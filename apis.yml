@@ -1,0 +1,180 @@
+aid: kernel-so
+url: https://raw.githubusercontent.com/api-evangelist/kernel-so/refs/heads/main/apis.yml
+name: Kernel
+tags:
+- Agents
+- AI
+- Artificial Intelligence
+- Browser Automation
+- Browsers
+- Computer Use
+- Headless Browsers
+- MCP
+- Playwright
+- Web Agents
+kind: contract
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+description: Kernel is browser infrastructure for AI agents and web automations. Founded
+  in 2025 by Catherine Jue (CEO) and Rafael Garcia (CTO) and backed by Accel and Y
+  Combinator (S25), Kernel runs sandboxed Chromium browsers on a unikernel platform
+  with sub-150ms cold starts, built-in stealth mode, residential proxies, CAPTCHA
+  solving, session recording, live view, persistent profiles, and a serverless app
+  platform that co-locates agent code with browsers. Kernel works with Playwright,
+  Puppeteer, Browser Use, Stagehand, Magnitude, Notte, and the Anthropic/OpenAI/Gemini
+  computer-use loops. The REST API at api.onkernel.com exposes browsers, browser
+  pools, profiles, proxies, replays, extensions, computer controls, filesystem,
+  processes, Playwright execution, managed auth, credentials, apps, deployments,
+  invocations, and projects.
+created: '2026-05-25'
+modified: '2026-05-25'
+apis:
+- aid: kernel-so:kernel-api
+  name: Kernel API
+  description: The Kernel REST API at api.onkernel.com is the unified control plane
+    for browser infrastructure. It exposes browser session lifecycle, browser pools,
+    profiles, proxies, replays, extensions, computer-use controls (mouse, keyboard,
+    clipboard, screenshots, batch actions), in-browser filesystem and process exec,
+    Playwright execution, log and telemetry streaming, managed auth connections,
+    credentials, credential providers, apps, deployments, invocations, projects,
+    and API keys. Bearer-token authenticated; OpenAPI 3.1 published via Stainless.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  version: '0.1.0'
+  tags:
+  - Agents
+  - Browser Automation
+  - Browsers
+  - Computer Use
+  - Headless Browsers
+  - Playwright
+  - Web Agents
+  properties:
+  - url: https://www.kernel.sh/docs/api-reference/
+    type: Documentation
+  - url: https://www.kernel.sh/docs/
+    type: Documentation
+  - url: https://www.kernel.sh/docs/llms.txt
+    type: LLMSTXT
+  - url: openapi/kernel-openapi.yml
+    type: OpenAPI
+  - url: https://app.stainless.com/api/spec/documented/kernel/openapi.documented.yml
+    type: OpenAPI
+- aid: kernel-so:kernel-mcp-server
+  name: Kernel MCP Server
+  description: Hosted Model Context Protocol server at mcp.onkernel.com that exposes
+    Kernel resources (browsers, profiles, proxies, apps) as MCP tools and bundles
+    four standalone tools — computer actions, Playwright execution with replay,
+    shell exec, and documentation search — to Claude, Cursor, VS Code, Zed, and any
+    MCP-compatible agent. Authenticates via OAuth 2.1 or API key.
+  humanURL: https://www.kernel.sh/docs/reference/mcp-server
+  baseURL: https://mcp.onkernel.com/mcp
+  tags:
+  - Agents
+  - MCP
+  properties:
+  - url: https://www.kernel.sh/docs/reference/mcp-server
+    type: Documentation
+  - url: https://github.com/onkernel/kernel-mcp-server
+    type: SourceCode
+common:
+- url: https://www.kernel.sh/
+  name: Kernel
+  type: Portal
+- url: https://www.kernel.sh/docs/
+  name: Kernel Docs
+  type: Documentation
+- url: https://www.kernel.sh/docs/api-reference/
+  name: Kernel API Reference
+  type: Documentation
+- url: https://www.kernel.sh/docs/llms.txt
+  name: llms.txt
+  type: LLMSTXT
+- url: https://www.kernel.sh/docs/info/pricing
+  name: Pricing & Limits
+  type: Pricing
+- url: https://www.kernel.sh/changelog
+  name: Changelog
+  type: ChangeLog
+- url: https://www.kernel.sh/docs/info/support
+  name: Support
+  type: Support
+- url: https://www.kernel.sh/docs/community/discord
+  name: Discord
+  type: Community
+- url: https://github.com/onkernel
+  name: Kernel on GitHub
+  type: SourceCode
+- url: https://github.com/onkernel/kernel-images
+  name: kernel-images (Browsers-as-a-service)
+  type: SourceCode
+- url: https://github.com/onkernel/kernel-python-sdk
+  name: Python SDK
+  type: SDK
+- url: https://github.com/onkernel/kernel-node-sdk
+  name: Node / TypeScript SDK
+  type: SDK
+- url: https://github.com/onkernel/kernel-go-sdk
+  name: Go SDK
+  type: SDK
+- url: https://github.com/onkernel/cli
+  name: Kernel CLI
+  type: CLI
+- url: https://github.com/onkernel/homebrew-tap
+  name: Homebrew Tap
+  type: CLI
+- url: https://github.com/onkernel/kernel-mcp-server
+  name: Kernel MCP Server (source)
+  type: MCPServer
+- url: https://github.com/onkernel/cu-playwright-ts
+  name: Computer Use to Playwright (TS)
+  type: SDK
+- url: https://github.com/onkernel/cu-playwright-python
+  name: Computer Use to Playwright (Python)
+  type: SDK
+- url: https://github.com/onkernel/hypeman
+  name: hypeman (multi-hypervisor VM runtime)
+  type: SourceCode
+- url: https://www.kernel.sh/docs/integrations/overview
+  name: Integrations Overview
+  type: Integrations
+- url: https://www.kernel.sh/docs/integrations/browser-use
+  name: Browser Use Integration
+  type: Integrations
+- url: https://www.kernel.sh/docs/integrations/stagehand
+  name: Stagehand Integration
+  type: Integrations
+- url: https://www.kernel.sh/docs/integrations/magnitude
+  name: Magnitude Integration
+  type: Integrations
+- url: https://www.kernel.sh/docs/integrations/notte
+  name: Notte Integration
+  type: Integrations
+- url: https://www.kernel.sh/docs/integrations/claude-agent-sdk
+  name: Claude Agent SDK Integration
+  type: Integrations
+- url: https://www.kernel.sh/docs/integrations/computer-use/anthropic
+  name: Anthropic Computer Use Integration
+  type: Integrations
+- url: https://www.kernel.sh/docs/integrations/computer-use/openai
+  name: OpenAI Computer Use Integration
+  type: Integrations
+- url: https://www.kernel.sh/docs/integrations/computer-use/gemini
+  name: Gemini Computer Use Integration
+  type: Integrations
+- url: https://www.kernel.sh/docs/integrations/vercel/marketplace
+  name: Vercel Marketplace Integration
+  type: Integrations
+- url: https://www.kernel.sh/docs/integrations/1password
+  name: 1Password Integration
+  type: Integrations
+- url: https://www.kernel.sh/docs/migrations/scrapybara
+  name: Migrate from Scrapybara
+  type: Migration
+- url: https://www.ycombinator.com/companies/kernel
+  name: Y Combinator (S25)
+  type: Funding
+maintainers:
+- FN: API Evangelist
+  url: https://apievangelist.com/
+  email: info@apievangelist.com
