@@ -13,7 +13,7 @@ tags:
 - Playwright
 - Web Agents
 kind: contract
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 description: Kernel is browser infrastructure for AI agents and web automations. Founded
   in 2025 by Catherine Jue (CEO) and Rafael Garcia (CTO) and backed by Accel and Y
