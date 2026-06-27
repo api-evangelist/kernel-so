@@ -55,7 +55,7 @@ apis:
   - url: https://www.kernel.sh/docs/
     type: Documentation
   - url: https://www.kernel.sh/docs/llms.txt
-    type: LLMSTXT
+    type: LlmsText
   - url: openapi/kernel-openapi.yml
     type: OpenAPI
   - url: https://app.stainless.com/api/spec/documented/kernel/openapi.documented.yml
@@ -89,7 +89,7 @@ common:
   type: Documentation
 - url: https://www.kernel.sh/docs/llms.txt
   name: llms.txt
-  type: LLMSTXT
+  type: LlmsText
 - url: https://www.kernel.sh/docs/info/pricing
   name: Pricing & Limits
   type: Pricing
@@ -110,13 +110,13 @@ common:
   type: SourceCode
 - url: https://github.com/onkernel/kernel-python-sdk
   name: Python SDK
-  type: SDK
+  type: SDKs
 - url: https://github.com/onkernel/kernel-node-sdk
   name: Node / TypeScript SDK
-  type: SDK
+  type: SDKs
 - url: https://github.com/onkernel/kernel-go-sdk
   name: Go SDK
-  type: SDK
+  type: SDKs
 - url: https://github.com/onkernel/cli
   name: Kernel CLI
   type: CLI
@@ -128,10 +128,10 @@ common:
   type: MCPServer
 - url: https://github.com/onkernel/cu-playwright-ts
   name: Computer Use to Playwright (TS)
-  type: SDK
+  type: SDKs
 - url: https://github.com/onkernel/cu-playwright-python
   name: Computer Use to Playwright (Python)
-  type: SDK
+  type: SDKs
 - url: https://github.com/onkernel/hypeman
   name: hypeman (multi-hypervisor VM runtime)
   type: SourceCode
