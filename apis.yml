@@ -78,6 +78,12 @@ apis:
   - url: https://github.com/onkernel/kernel-mcp-server
     type: SourceCode
 common:
+- type: TrustCenter
+  url: security/kernel-so-trust-center.yml
+- type: DomainSecurity
+  url: security/kernel-so-domain-security.yml
+- type: Authentication
+  url: authentication/kernel-so-authentication.yml
 - url: https://www.kernel.sh/
   name: Kernel
   type: Portal
@@ -174,6 +180,9 @@ common:
 - url: https://www.ycombinator.com/companies/kernel
   name: Y Combinator (S25)
   type: Funding
+- url: https://www.kernel.sh/api/blog/rss
+  name: Kernel Blog
+  type: Blog
 maintainers:
 - FN: API Evangelist
   url: https://apievangelist.com/
