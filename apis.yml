@@ -78,6 +78,8 @@ apis:
   - url: https://github.com/onkernel/kernel-mcp-server
     type: SourceCode
 common:
+- type: AgenticAccess
+  url: agentic-access/kernel-so-agentic-access.yml
 - type: TrustCenter
   url: security/kernel-so-trust-center.yml
 - type: DomainSecurity
