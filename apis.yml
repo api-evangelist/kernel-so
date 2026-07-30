@@ -13,7 +13,19 @@ tags:
 - Playwright
 - Web Agents
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/kernel-so.png
 access: 3rd-Party
 description: Kernel is browser infrastructure for AI agents and web automations. Founded
   in 2025 by Catherine Jue (CEO) and Rafael Garcia (CTO) and backed by Accel and Y
@@ -29,44 +41,13 @@ description: Kernel is browser infrastructure for AI agents and web automations.
 created: '2026-05-25'
 modified: '2026-05-25'
 apis:
-- aid: kernel-so:kernel-api
-  name: Kernel API
-  description: The Kernel REST API at api.onkernel.com is the unified control plane
-    for browser infrastructure. It exposes browser session lifecycle, browser pools,
-    profiles, proxies, replays, extensions, computer-use controls (mouse, keyboard,
-    clipboard, screenshots, batch actions), in-browser filesystem and process exec,
-    Playwright execution, log and telemetry streaming, managed auth connections,
-    credentials, credential providers, apps, deployments, invocations, projects,
-    and API keys. Bearer-token authenticated; OpenAPI 3.1 published via Stainless.
-  humanURL: https://www.kernel.sh/docs/api-reference/
-  baseURL: https://api.onkernel.com
-  version: '0.1.0'
-  tags:
-  - Agents
-  - Browser Automation
-  - Browsers
-  - Computer Use
-  - Headless Browsers
-  - Playwright
-  - Web Agents
-  properties:
-  - url: https://www.kernel.sh/docs/api-reference/
-    type: Documentation
-  - url: https://www.kernel.sh/docs/
-    type: Documentation
-  - url: https://www.kernel.sh/docs/llms.txt
-    type: LlmsText
-  - url: openapi/kernel-openapi.yml
-    type: OpenAPI
-  - url: https://app.stainless.com/api/spec/documented/kernel/openapi.documented.yml
-    type: OpenAPI
 - aid: kernel-so:kernel-mcp-server
   name: Kernel MCP Server
-  description: Hosted Model Context Protocol server at mcp.onkernel.com that exposes
-    Kernel resources (browsers, profiles, proxies, apps) as MCP tools and bundles
-    four standalone tools — computer actions, Playwright execution with replay,
-    shell exec, and documentation search — to Claude, Cursor, VS Code, Zed, and any
-    MCP-compatible agent. Authenticates via OAuth 2.1 or API key.
+  description: >-
+    Hosted Model Context Protocol server at mcp.onkernel.com that exposes Kernel resources (browsers,
+    profiles, proxies, apps) as MCP tools and bundles four standalone tools — computer actions, Playwright
+    execution with replay, shell exec, and documentation search — to Claude, Cursor, VS Code, Zed, and
+    any MCP-compatible agent. Authenticates via OAuth 2.1 or API key.
   humanURL: https://www.kernel.sh/docs/reference/mcp-server
   baseURL: https://mcp.onkernel.com/mcp
   tags:
@@ -77,6 +58,342 @@ apis:
     type: Documentation
   - url: https://github.com/onkernel/kernel-mcp-server
     type: SourceCode
+- aid: kernel-so:kernel-so-api-keys-api
+  name: Kernel API Keys API
+  description: Create and manage API keys for organization and project-scoped access.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-apps-api
+  name: Kernel Apps API
+  description: List applications and versions.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-apps-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-auth-connections-api
+  name: Kernel Auth Connections API
+  description: The Auth Connections API from Kernel — 6 operation(s) for auth connections.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Auth Connections
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-auth-connections-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-browser-computer-controls-api
+  name: Kernel Browser Computer Controls API
+  description: Control mouse, keyboard, and screen on the browser instance.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Browser Computer Controls
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-browser-computer-controls-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-browser-filesystem-api
+  name: Kernel Browser Filesystem API
+  description: Read, write, and manage files on the browser instance.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Browser Filesystem
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-browser-filesystem-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-browser-logs-api
+  name: Kernel Browser Logs API
+  description: Stream logs from the browser instance.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Browser Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-browser-logs-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-browser-playwright-api
+  name: Kernel Browser Playwright API
+  description: Execute Playwright code against the browser instance.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Browser Playwright
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-browser-playwright-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-browser-pools-api
+  name: Kernel Browser Pools API
+  description: Create and manage browser pools for acquiring and releasing browsers.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Browser Pools
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-browser-pools-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-browser-processes-api
+  name: Kernel Browser Processes API
+  description: Execute and manage processes on the browser instance.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Browser Processes
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-browser-processes-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-browser-replays-api
+  name: Kernel Browser Replays API
+  description: Record and manage browser session video replays.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Browser Replays
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-browser-replays-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-browser-telemetry-api
+  name: Kernel Browser Telemetry API
+  description: Stream live telemetry events from a browser session.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Browser Telemetry
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-browser-telemetry-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-browsers-api
+  name: Kernel Browsers API
+  description: Create and manage browser sessions.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Browsers
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-browsers-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-credential-providers-api
+  name: Kernel Credential Providers API
+  description: Configure external credential providers like 1Password.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Credential Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-credential-providers-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-credentials-api
+  name: Kernel Credentials API
+  description: Create and manage credentials for authentication.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-credentials-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-deployments-api
+  name: Kernel Deployments API
+  description: Create and manage app deployments and stream deployment events.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Deployments
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-deployments-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-extensions-api
+  name: Kernel Extensions API
+  description: Create, list, retrieve, and delete browser extensions.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Extensions
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-extensions-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-invocations-api
+  name: Kernel Invocations API
+  description: Invoke actions and stream or query invocation status and events.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Invocations
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-invocations-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-managed-auth-api
+  name: Kernel Managed Auth API
+  description: Create and manage auth connections for automated credential capture and login.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Managed Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-managed-auth-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-profiles-api
+  name: Kernel Profiles API
+  description: Create, list, retrieve, and delete browser profiles.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-projects-api
+  name: Kernel Projects API
+  description: Create and manage projects for resource isolation within an organization.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-projects-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
+- aid: kernel-so:kernel-so-proxies-api
+  name: Kernel Proxies API
+  description: Create and manage proxy configurations for routing browser traffic.
+  humanURL: https://www.kernel.sh/docs/api-reference/
+  baseURL: https://api.onkernel.com
+  tags:
+  - Proxies
+  properties:
+  - type: OpenAPI
+    url: openapi/kernel-so-proxies-api-openapi.yml
+  - type: Documentation
+    url: https://www.kernel.sh/docs/api-reference/
+  - type: Documentation
+    url: https://www.kernel.sh/docs/
+  - type: LlmsText
+    url: https://www.kernel.sh/docs/llms.txt
 common:
 - type: AgenticAccess
   url: agentic-access/kernel-so-agentic-access.yml
