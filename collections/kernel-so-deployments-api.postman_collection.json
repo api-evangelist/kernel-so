@@ -1,0 +1,1696 @@
+{
+  "item": [
+    {
+      "id": "2b4defcb-1d9f-4a87-a5e0-39b6e8ebd72f",
+      "name": "Deployments",
+      "description": {
+        "content": "Create and manage app deployments and stream deployment events.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "262d590d-edf8-4959-9b06-fb8d0cee653d",
+          "name": "List deployments",
+          "request": {
+            "name": "List deployments",
+            "description": {
+              "content": "List deployments. Optionally filter by application name and version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_name",
+                  "value": "<string>",
+                  "description": "Filter results by application name."
+                },
+                {
+                  "disabled": false,
+                  "key": "app_version",
+                  "value": "<string>",
+                  "description": "Filter results by application version. Requires app_name to be set."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Limit the number of deployments to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset the number of deployments to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dbf9c399-1f3e-4cc3-a005-df5258680101",
+              "name": "List of deployments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Limit the number of deployments to return.",
+                  "key": "X-Limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "description": "The offset of deployments to return.",
+                  "key": "X-Offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "description": "Next offset to use for pagination.",
+                  "key": "X-Next-Offset",
+                  "value": "114"
+                },
+                {
+                  "disabled": false,
+                  "description": "Whether there are more deployments to fetch.",
+                  "key": "X-Has-More",
+                  "value": "false"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"rr33xuugxj9h0bkf1rdt2bet\",\n    \"status\": \"queued\",\n    \"region\": \"aws.us-east-1a\",\n    \"created_at\": \"1986-10-14T05:40:41.727Z\",\n    \"status_reason\": \"Deployment in progress\",\n    \"entrypoint_rel_path\": \"src/app.py\",\n    \"env_vars\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"updated_at\": \"1971-10-21T10:21:31.570Z\"\n  },\n  {\n    \"id\": \"rr33xuugxj9h0bkf1rdt2bet\",\n    \"status\": \"queued\",\n    \"region\": \"aws.us-east-1a\",\n    \"created_at\": \"2022-05-02T19:04:06.520Z\",\n    \"status_reason\": \"Deployment in progress\",\n    \"entrypoint_rel_path\": \"src/app.py\",\n    \"env_vars\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"updated_at\": \"1956-03-17T17:54:12.484Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7533bcb4-f97a-49ac-98df-9f02faf81681",
+              "name": "Bad Request – invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0613024c-8989-4377-bd46-2a1eb05f7a48",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ba43cff-5392-4d16-8fd5-834f53d0769f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62892efe-6f65-428b-ac82-ffd7ebfa1f0a",
+          "name": "Create a deployment",
+          "request": {
+            "name": "Create a deployment",
+            "description": {
+              "content": "Create a new deployment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "response": [
+            {
+              "id": "7919169d-3b7f-4e05-8a0c-1a25656d75d1",
+              "name": "Deployment created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Version of the application. Can be any string.",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "1.0.0",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "ZIP file containing the application source directory",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": {
+                        "content": "Relative path to the entrypoint of the application",
+                        "type": "text/plain"
+                      },
+                      "key": "entrypoint_rel_path",
+                      "value": "src/app.py",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Region for deployment. Currently we only support \"aws.us-east-1a\"",
+                        "type": "text/plain"
+                      },
+                      "key": "region",
+                      "value": "aws.us-east-1a",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allow overwriting an existing app version",
+                        "type": "text/plain"
+                      },
+                      "key": "force",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Map of environment variables to set for the deployed application. Each key-value pair represents an environment variable.",
+                        "type": "text/plain"
+                      },
+                      "key": "env_vars",
+                      "value": "{\"FOO\":\"bar\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"rr33xuugxj9h0bkf1rdt2bet\",\n  \"status\": \"queued\",\n  \"region\": \"aws.us-east-1a\",\n  \"created_at\": \"2011-10-25T21:15:38.882Z\",\n  \"status_reason\": \"Deployment in progress\",\n  \"entrypoint_rel_path\": \"src/app.py\",\n  \"env_vars\": {\n    \"key_0\": \"string\"\n  },\n  \"updated_at\": \"1962-03-24T03:52:43.137Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca15bb8a-a831-4a25-bef2-3978931535db",
+              "name": "Bad Request – invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Version of the application. Can be any string.",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "1.0.0",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "ZIP file containing the application source directory",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": {
+                        "content": "Relative path to the entrypoint of the application",
+                        "type": "text/plain"
+                      },
+                      "key": "entrypoint_rel_path",
+                      "value": "src/app.py",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Region for deployment. Currently we only support \"aws.us-east-1a\"",
+                        "type": "text/plain"
+                      },
+                      "key": "region",
+                      "value": "aws.us-east-1a",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allow overwriting an existing app version",
+                        "type": "text/plain"
+                      },
+                      "key": "force",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Map of environment variables to set for the deployed application. Each key-value pair represents an environment variable.",
+                        "type": "text/plain"
+                      },
+                      "key": "env_vars",
+                      "value": "{\"FOO\":\"bar\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2119fa8a-f996-4216-ab0b-19a11fa30d47",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Version of the application. Can be any string.",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "1.0.0",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "ZIP file containing the application source directory",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": {
+                        "content": "Relative path to the entrypoint of the application",
+                        "type": "text/plain"
+                      },
+                      "key": "entrypoint_rel_path",
+                      "value": "src/app.py",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Region for deployment. Currently we only support \"aws.us-east-1a\"",
+                        "type": "text/plain"
+                      },
+                      "key": "region",
+                      "value": "aws.us-east-1a",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allow overwriting an existing app version",
+                        "type": "text/plain"
+                      },
+                      "key": "force",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Map of environment variables to set for the deployed application. Each key-value pair represents an environment variable.",
+                        "type": "text/plain"
+                      },
+                      "key": "env_vars",
+                      "value": "{\"FOO\":\"bar\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f797de7f-8150-4254-8d09-d9aa7389fb2a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Version of the application. Can be any string.",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "1.0.0",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "ZIP file containing the application source directory",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": {
+                        "content": "Relative path to the entrypoint of the application",
+                        "type": "text/plain"
+                      },
+                      "key": "entrypoint_rel_path",
+                      "value": "src/app.py",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Region for deployment. Currently we only support \"aws.us-east-1a\"",
+                        "type": "text/plain"
+                      },
+                      "key": "region",
+                      "value": "aws.us-east-1a",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Allow overwriting an existing app version",
+                        "type": "text/plain"
+                      },
+                      "key": "force",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Map of environment variables to set for the deployed application. Each key-value pair represents an environment variable.",
+                        "type": "text/plain"
+                      },
+                      "key": "env_vars",
+                      "value": "{\"FOO\":\"bar\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "762c173e-2d4d-49fa-9f4c-e7c721875a7f",
+          "name": "Get deployment details",
+          "request": {
+            "name": "Get deployment details",
+            "description": {
+              "content": "Get information about a deployment's status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Deployment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ed79f169-f151-410c-8366-e7fa7afb462b",
+              "name": "Deployment retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"rr33xuugxj9h0bkf1rdt2bet\",\n  \"status\": \"queued\",\n  \"region\": \"aws.us-east-1a\",\n  \"created_at\": \"2011-10-25T21:15:38.882Z\",\n  \"status_reason\": \"Deployment in progress\",\n  \"entrypoint_rel_path\": \"src/app.py\",\n  \"env_vars\": {\n    \"key_0\": \"string\"\n  },\n  \"updated_at\": \"1962-03-24T03:52:43.137Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86d4e8a4-d1ec-4c6f-9491-c761f0283fe7",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be6a7fc9-ece6-4b5e-ad04-ca1ef4b81928",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8594ab33-719c-4fba-ad44-ba9492303ad0",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7987ecf2-5532-4189-a8c5-69f2643ab5bd",
+          "name": "Delete a deployment",
+          "request": {
+            "name": "Delete a deployment",
+            "description": {
+              "content": "Stops a running deployment and marks it for deletion. If the deployment is already in a terminal state (stopped or failed), returns immediately.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Deployment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0dc8f809-08cb-432e-a3ad-11e42eb11d39",
+              "name": "Deployment deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3acc45de-32f0-4fdf-9920-0344b797f01e",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d536d55d-0939-4bb6-a4d7-17b4c2ad6e3e",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa5b7113-3bba-47d8-8aa1-1986ffeb521e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Deployment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "625b5ec2-13e6-4459-8406-dc079dd75f64",
+          "name": "Stream deployment events via SSE",
+          "request": {
+            "name": "Stream deployment events via SSE",
+            "description": {
+              "content": "Establishes a Server-Sent Events (SSE) stream that delivers real-time logs and\nstatus updates for a deployment. The stream terminates automatically\nonce the deployment reaches a terminal state.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                ":id",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<string>",
+                  "description": "Show logs since the given time (RFC timestamps or durations like 5m)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The deployment ID to follow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/event-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bbf2885e-3f8b-4f6f-8fe8-f60fd4c94192",
+              "name": "SSE stream of deployment state updates and logs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "2025-06-20T12:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The deployment ID to follow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/event-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Media type of SSE data events (always application/json).",
+                  "key": "X-SSE-Content-Type",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/event-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6f087fa4-9125-4638-be0b-07a321da9f00",
+              "name": "Bad Request – invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "2025-06-20T12:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The deployment ID to follow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95d10716-c509-4e75-a23e-c04b036b71dc",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "2025-06-20T12:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The deployment ID to follow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af595bfe-13bd-4077-984d-6a778c347479",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "2025-06-20T12:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The deployment ID to follow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5f17c2a-406f-41a4-952b-41872d745903",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "2025-06-20T12:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The deployment ID to follow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.onkernel.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9f57606b-f514-439c-bf62-f56188148873",
+    "name": "Kernel API Keys Deployments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Developer tools and cloud infrastructure for AI agents to use web browsers",
+      "type": "text/plain"
+    }
+  }
+}

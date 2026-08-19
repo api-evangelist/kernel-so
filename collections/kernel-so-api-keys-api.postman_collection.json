@@ -1,0 +1,1483 @@
+{
+  "item": [
+    {
+      "id": "ef3728da-96a4-4268-b7ee-cb0976df9cd8",
+      "name": "API Keys",
+      "description": {
+        "content": "Create and manage API keys for organization and project-scoped access.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "56a2a6f6-c1c6-42b2-92a2-e506640e5b13",
+          "name": "List API keys",
+          "request": {
+            "name": "List API keys",
+            "description": {
+              "content": "List API keys for the authenticated organization. API keys are masked.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "org",
+                "api_keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c07f88e5-5da0-4b62-9694-9e51095040cd",
+              "name": "List of API keys",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Whether there are more results",
+                  "key": "X-Has-More",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "description": "Offset for next page",
+                  "key": "X-Next-Offset",
+                  "value": "3484"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ckv9w8q2f000001l5r3j7k9m4\",\n    \"name\": \"production\",\n    \"created_at\": \"1982-11-15T03:54:55.493Z\",\n    \"created_by\": {\n      \"id\": \"user-abc123\",\n      \"email\": \"user@example.com\",\n      \"name\": \"Jane Doe\"\n    },\n    \"expires_at\": \"2009-12-30T04:38:01.752Z\",\n    \"project_id\": \"proj_abc123\",\n    \"project_name\": \"Production\",\n    \"masked_key\": \"sk_1234...abcd\"\n  },\n  {\n    \"id\": \"ckv9w8q2f000001l5r3j7k9m4\",\n    \"name\": \"production\",\n    \"created_at\": \"2001-08-10T04:47:03.648Z\",\n    \"created_by\": {\n      \"id\": \"user-abc123\",\n      \"email\": \"user@example.com\",\n      \"name\": \"Jane Doe\"\n    },\n    \"expires_at\": \"1978-03-15T03:50:54.148Z\",\n    \"project_id\": \"proj_abc123\",\n    \"project_name\": \"Production\",\n    \"masked_key\": \"sk_1234...abcd\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ac38cde-f17e-45b8-a21e-e3184812e1eb",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dfd7447-2781-4779-94de-a397d7cd97a6",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49d74534-a544-4473-9fa8-bc6dae2574aa",
+          "name": "Create an API key",
+          "request": {
+            "name": "Create an API key",
+            "description": {
+              "content": "Create a new API key within the authenticated organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "org",
+                "api_keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"days_to_expire\": \"<integer>\",\n  \"project_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3a552ad3-9658-41bb-a15b-0184a0b8f372",
+              "name": "API key created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"staging\",\n  \"days_to_expire\": 30,\n  \"project_id\": \"proj_abc123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"1982-06-18T03:16:20.347Z\",\n  \"created_by\": {\n    \"id\": \"user-abc123\",\n    \"email\": \"user@example.com\",\n    \"name\": \"Jane Doe\"\n  },\n  \"expires_at\": \"1963-12-14T11:08:03.918Z\",\n  \"id\": \"ckv9w8q2f000001l5r3j7k9m4\",\n  \"key\": \"sk_1234abcd\",\n  \"masked_key\": \"sk_1234...abcd\",\n  \"name\": \"production\",\n  \"project_id\": \"proj_abc123\",\n  \"project_name\": \"Production\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afb9ab04-8cb9-47c1-b592-1b244a433db3",
+              "name": "Bad Request – invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"staging\",\n  \"days_to_expire\": 30,\n  \"project_id\": \"proj_abc123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0181adac-8416-4a12-8445-6743c331d9c0",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"staging\",\n  \"days_to_expire\": 30,\n  \"project_id\": \"proj_abc123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8871961-433a-4ab9-9a50-0f55b239ff6b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"staging\",\n  \"days_to_expire\": 30,\n  \"project_id\": \"proj_abc123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "924449a1-51ca-4a9b-8700-ddee52548dcc",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"staging\",\n  \"days_to_expire\": 30,\n  \"project_id\": \"proj_abc123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41b3e964-3abc-4d3c-ba55-d7dd36dc6abb",
+          "name": "Get an API key",
+          "request": {
+            "name": "Get an API key",
+            "description": {
+              "content": "Retrieve an API key by ID for the authenticated organization. API keys are masked.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "org",
+                "api_keys",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) API key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5e11f9d4-75ec-422c-94bd-51a8decb9caf",
+              "name": "API key details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ckv9w8q2f000001l5r3j7k9m4\",\n  \"name\": \"production\",\n  \"created_at\": \"1980-07-20T02:07:35.820Z\",\n  \"created_by\": {\n    \"id\": \"user-abc123\",\n    \"email\": \"user@example.com\",\n    \"name\": \"Jane Doe\"\n  },\n  \"expires_at\": \"1967-04-10T16:59:50.424Z\",\n  \"project_id\": \"proj_abc123\",\n  \"project_name\": \"Production\",\n  \"masked_key\": \"sk_1234...abcd\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a298b50-e5ec-442e-a106-560b1e9ab9b3",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35b98f0f-49d2-4d42-bf5b-59c0bbdaa9d2",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9934684e-4488-4415-adbd-199eb3476342",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ffb150a-275d-4c9a-b627-8c1c615f589d",
+          "name": "Update an API key",
+          "request": {
+            "name": "Update an API key",
+            "description": {
+              "content": "Update an API key's name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "org",
+                "api_keys",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) API key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "230ea40e-b94d-4ae9-9ea3-1571b3d3eb4a",
+              "name": "API key updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new-api-name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ckv9w8q2f000001l5r3j7k9m4\",\n  \"name\": \"production\",\n  \"created_at\": \"1980-07-20T02:07:35.820Z\",\n  \"created_by\": {\n    \"id\": \"user-abc123\",\n    \"email\": \"user@example.com\",\n    \"name\": \"Jane Doe\"\n  },\n  \"expires_at\": \"1967-04-10T16:59:50.424Z\",\n  \"project_id\": \"proj_abc123\",\n  \"project_name\": \"Production\",\n  \"masked_key\": \"sk_1234...abcd\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32263097-5061-4666-b975-e8aa68d5018b",
+              "name": "Bad Request – invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new-api-name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d70af371-3429-4eda-8a44-b52487fda02c",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new-api-name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a856a3db-b7ac-4cf0-ae2b-48f5f4a6df16",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new-api-name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4e1c847-b685-4b6d-bf5b-b5771d1c24e6",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new-api-name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41a2bc38-bef8-435f-9fea-073300a36c68",
+          "name": "Delete an API key",
+          "request": {
+            "name": "Delete an API key",
+            "description": {
+              "content": "Delete an API key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "org",
+                "api_keys",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) API key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ee21135f-5372-4075-bb76-e5b85867b598",
+              "name": "API key deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b8469f2-8263-4b8f-823b-23560ecc2d4f",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b906c30b-c427-415a-bdbd-b9cd336798ae",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d195d25-3bfd-407a-88a7-b3283fd5399c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "org",
+                    "api_keys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) API key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.onkernel.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c229296f-178b-46b6-b4f9-57d1333bb0d4",
+    "name": "Kernel API Keys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Developer tools and cloud infrastructure for AI agents to use web browsers",
+      "type": "text/plain"
+    }
+  }
+}

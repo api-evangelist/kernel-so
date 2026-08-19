@@ -1,0 +1,1702 @@
+{
+  "item": [
+    {
+      "id": "035f4c10-cc72-440a-a133-772460e20923",
+      "name": "Browser Replays",
+      "description": {
+        "content": "Record and manage browser session video replays.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ccbe13e6-ec38-4e0c-a7e6-349680811414",
+          "name": "Start a browser session replay recording",
+          "request": {
+            "name": "Start a browser session replay recording",
+            "description": {
+              "content": "Start recording the browser session and return a replay ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "browsers",
+                ":id",
+                "replays"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Browser session ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"framerate\": \"<integer>\",\n  \"max_duration_in_seconds\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "88eac83d-244a-4be8-b7de-0f270b6e2263",
+              "name": "Recording started successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"framerate\": \"<integer>\",\n  \"max_duration_in_seconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"replay_id\": \"string\",\n  \"started_at\": \"1973-10-02T07:50:18.041Z\",\n  \"finished_at\": \"1992-01-04T06:21:12.854Z\",\n  \"replay_view_url\": \"https://api.onkernel.com/browser/replays?jwt=eyJ0eXAi...&replay_id=7e2c1a9f-1234-4cde-9abc-ffeedd001122\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fff69591-d1c4-4ac2-89b2-e34c01f27fc8",
+              "name": "Bad Request – invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"framerate\": \"<integer>\",\n  \"max_duration_in_seconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa51020c-7650-4651-a6b8-a28da609e11f",
+              "name": "Forbidden – insufficient permissions or plan",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"framerate\": \"<integer>\",\n  \"max_duration_in_seconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6067d9f8-bf61-45bf-857b-c4d1f48175ab",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"framerate\": \"<integer>\",\n  \"max_duration_in_seconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec09d6ae-97b4-45a6-a53f-1c031c8f156d",
+              "name": "Conflict – resource already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"framerate\": \"<integer>\",\n  \"max_duration_in_seconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c259bd9-645b-4c8a-9b64-77d01376824c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"framerate\": \"<integer>\",\n  \"max_duration_in_seconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40f03fc4-11dc-4e10-9bb5-d2b78b080bdf",
+          "name": "List browser session replays",
+          "request": {
+            "name": "List browser session replays",
+            "description": {
+              "content": "List all replays for the specified browser session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "browsers",
+                ":id",
+                "replays"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Browser session ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b6ac8ec0-96cd-4a30-a8a6-5c1e5c1bd18c",
+              "name": "List of replays retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"replay_id\": \"string\",\n    \"started_at\": \"1951-04-02T02:20:44.902Z\",\n    \"finished_at\": \"2007-11-04T15:21:06.338Z\",\n    \"replay_view_url\": \"https://api.onkernel.com/browser/replays?jwt=eyJ0eXAi...&replay_id=7e2c1a9f-1234-4cde-9abc-ffeedd001122\"\n  },\n  {\n    \"replay_id\": \"string\",\n    \"started_at\": \"1995-12-21T01:22:02.638Z\",\n    \"finished_at\": \"1991-04-02T17:33:05.202Z\",\n    \"replay_view_url\": \"https://api.onkernel.com/browser/replays?jwt=eyJ0eXAi...&replay_id=7e2c1a9f-1234-4cde-9abc-ffeedd001122\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3c2d6ca-9267-46c5-8955-8286c1a44c76",
+              "name": "Bad Request – invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c884e44-81c1-40bd-a7a9-d075b6a60bb5",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d732e703-0063-4730-8a9b-32eb4b75df87",
+              "name": "Forbidden – insufficient permissions or plan",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "106310bb-3def-4f9f-9232-71a0b8f3fb80",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e27546ed-ffd9-48a5-94e3-5ce2f1fbbbf8",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f5e5910-ff97-4d56-af75-845f960d36d5",
+          "name": "Download a replay recording",
+          "request": {
+            "name": "Download a replay recording",
+            "description": {
+              "content": "Download or stream the specified replay recording.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "browsers",
+                ":id",
+                "replays",
+                ":replay_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Browser session ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "replay_id",
+                  "description": "(Required) Replay recording identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "video/mp4"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "647e37d4-fc5c-40bb-9265-3db79e5ddda2",
+              "name": "Replay recording retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "video/mp4"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "video/mp4"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0505afd-ca97-4c27-9fb2-895b744d3792",
+              "name": "Replay recording is still in progress, please try again later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Suggested wait time in seconds before retrying",
+                  "key": "Retry-After",
+                  "value": "9264"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "011ed707-105c-4810-aac5-fea07f3f3f7e",
+              "name": "Bad Request – invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8389a4e5-6725-4f96-9be9-f8e3e754c677",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53317f01-32fc-47ef-9d93-bdf91202371c",
+              "name": "Forbidden – insufficient permissions or plan",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94748be5-65ec-4348-b5e8-0ea43cde96d6",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c94591e-beaf-4f04-93ea-ba5d82e13a8a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e89adc22-d206-47f2-aaa9-1a5953b3257b",
+          "name": "Stop a browser session replay recording",
+          "request": {
+            "name": "Stop a browser session replay recording",
+            "description": {
+              "content": "Stop the specified replay recording and persist the video.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "browsers",
+                ":id",
+                "replays",
+                ":replay_id",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Browser session ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "replay_id",
+                  "description": "(Required) Replay recording identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dc26e06e-09f2-4915-b937-aef7a918d98c",
+              "name": "Recording stopped successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e7502b1-2aa3-41b5-ab4a-3c01b7cd5c1a",
+              "name": "Bad Request – invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0bcc950-d31a-45ce-9a87-8a79c419fabb",
+              "name": "Forbidden – insufficient permissions or plan",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2dc6ee89-81ee-4d12-b135-8bac1277feea",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3466e619-4914-4a46-bd64-665ff71be6c5",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "replays",
+                    ":replay_id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "replay_id",
+                      "description": "(Required) Replay recording identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.onkernel.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f39f5e30-f383-4f64-83ca-cb204eb6c6f4",
+    "name": "Kernel API Keys Browser Replays API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Developer tools and cloud infrastructure for AI agents to use web browsers",
+      "type": "text/plain"
+    }
+  }
+}

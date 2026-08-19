@@ -1,0 +1,401 @@
+{
+  "item": [
+    {
+      "id": "db1137a3-da3f-49fc-9ed7-c935e0a5e4b4",
+      "name": "Browser Telemetry",
+      "description": {
+        "content": "Stream live telemetry events from a browser session.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "56b13c7b-20ec-40b0-92a5-06c3614a33af",
+          "name": "Stream telemetry events via SSE",
+          "request": {
+            "name": "Stream telemetry events via SSE",
+            "description": {
+              "content": "Streams browser telemetry events as a server-sent events (SSE) stream. The stream closes when the browser session terminates. Each event frame includes an id: field containing a monotonically increasing sequence number; pass it as Last-Event-ID on reconnect to resume without gaps. The event: field is never set; all frames carry JSON in the data: field. A keepalive comment frame is sent every 15 seconds when no events arrive. Returns 404 if the browser session does not exist. If telemetry was not enabled on the session, the stream opens but no events are delivered.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "browsers",
+                ":id",
+                "telemetry"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Browser session ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Last event sequence number for SSE reconnection (sent by SSE clients on reconnect)",
+                "key": "Last-Event-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/event-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0f961bb2-47ee-4fa5-a328-57935c3fffc6",
+              "name": "SSE stream of telemetry events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "telemetry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Last event sequence number for SSE reconnection (sent by SSE clients on reconnect)",
+                    "key": "Last-Event-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/event-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Media type of SSE data events (always application/json).",
+                  "key": "X-SSE-Content-Type",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/event-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0eb1499-b168-4279-a6a4-3824e1bc08cb",
+              "name": "Unauthorized – missing or invalid authorization token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "telemetry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Last event sequence number for SSE reconnection (sent by SSE clients on reconnect)",
+                    "key": "Last-Event-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d0664ee-51e9-40af-8b7e-6a9a63cbfd8e",
+              "name": "Forbidden – insufficient permissions or plan",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "telemetry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Last event sequence number for SSE reconnection (sent by SSE clients on reconnect)",
+                    "key": "Last-Event-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "568398df-b30f-4e05-9f83-54bb4207968c",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "telemetry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Last event sequence number for SSE reconnection (sent by SSE clients on reconnect)",
+                    "key": "Last-Event-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6ec81e8-b223-448f-b824-65f99b5008b9",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "browsers",
+                    ":id",
+                    "telemetry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Browser session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Last event sequence number for SSE reconnection (sent by SSE clients on reconnect)",
+                    "key": "Last-Event-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"bad_request\",\n  \"message\": \"Missing required field: app_name\",\n  \"details\": [\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    },\n    {\n      \"code\": \"invalid_input\",\n      \"message\": \"Provided version string is not semver compliant\"\n    }\n  ],\n  \"inner_error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"Provided version string is not semver compliant\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.onkernel.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d2201dc6-fb49-4e15-b2ad-0c84a6c9882c",
+    "name": "Kernel API Keys Browser Telemetry API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Developer tools and cloud infrastructure for AI agents to use web browsers",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,285 @@
+# Kernel
+
+## Docs
+
+- [wrangle the wild web](https://kernel.sh/docs/index.md)
+- [Create](https://kernel.sh/docs/introduction/create.md): Spin up a cloud browser for your agent
+- [Control](https://kernel.sh/docs/introduction/control.md): Drive the browser with computer use, playwright execution, CDP, or WebDriver BiDi
+- [Observe](https://kernel.sh/docs/introduction/observe.md): Watch your agent work, debug what went wrong
+- [Scale](https://kernel.sh/docs/introduction/scale.md): Recommended practices for scaling in production
+- [Live View](https://kernel.sh/docs/browsers/live-view.md)
+- [Termination & Timeouts](https://kernel.sh/docs/browsers/termination.md)
+- [Standby Mode](https://kernel.sh/docs/browsers/standby.md)
+- [Headless Mode](https://kernel.sh/docs/browsers/headless.md)
+- [Projects](https://kernel.sh/docs/info/projects.md): Organize resources and isolate access within your Kernel organization
+- [Replays](https://kernel.sh/docs/browsers/replays.md): Record and view browser sessions as mp4 videos
+- [Viewports](https://kernel.sh/docs/browsers/viewport.md): Configure browser viewport size and refresh rate for your automations
+- [GPU Acceleration](https://kernel.sh/docs/browsers/gpu-acceleration.md)
+- [Overview](https://kernel.sh/docs/auth/overview.md): Maintain authenticated browser sessions for agents
+- [Hosted UI](https://kernel.sh/docs/auth/hosted-ui.md): The simplest way to create authenticated browser sessions
+- [React Component](https://kernel.sh/docs/auth/react.md): Embed the Kernel managed auth login flow in your own app with a drop-in React component
+- [Programmatic Flow](https://kernel.sh/docs/auth/programmatic.md): Build your own credential collection UI with full control
+- [Connection Configuration](https://kernel.sh/docs/auth/configuration.md): Shared options for managed auth connections, regardless of integration flow
+- [Connection Lifecycle](https://kernel.sh/docs/auth/connection-lifecycle.md): How connections stay authenticated, and what to do when one breaks
+- [Credentials](https://kernel.sh/docs/auth/credentials.md): Automate authentication with stored credentials
+- [Profiles](https://kernel.sh/docs/auth/profiles.md): The primitive to persist and reuse browser session state (cookies, local storage) across browsers
+- [FAQ](https://kernel.sh/docs/auth/faq.md)
+- [API Keys](https://kernel.sh/docs/info/api-keys.md): Create, scope, rotate, and delete Kernel API keys
+- [Audit Logs](https://kernel.sh/docs/info/audit-logs.md): Audit logs for API requests across your organization
+- [File I/O](https://kernel.sh/docs/browsers/file-io.md): Downloads, uploads, and manipulating the browser's filesystem
+- [Curl](https://kernel.sh/docs/browsers/curl.md): Send HTTP requests through Kernel browsers
+- [SSH Access](https://kernel.sh/docs/browsers/ssh.md): Open an interactive SSH session to a browser VM
+- [Computer Controls](https://kernel.sh/docs/browsers/computer-controls.md): Control the computer's mouse, keyboard, and screen
+- [Playwright Execution](https://kernel.sh/docs/browsers/playwright-execution.md): Execute Playwright code in the same VM as your browser
+- [Overview](https://kernel.sh/docs/browsers/bot-detection/overview.md)
+- [Stealth Mode](https://kernel.sh/docs/browsers/bot-detection/stealth.md)
+- [hCaptcha](https://kernel.sh/docs/browsers/bot-detection/hcaptcha.md)
+- [Overview](https://kernel.sh/docs/proxies/overview.md)
+- [Custom Proxies](https://kernel.sh/docs/proxies/custom.md)
+- [Residential Proxies](https://kernel.sh/docs/proxies/residential.md)
+- [Mobile Proxies](https://kernel.sh/docs/proxies/mobile.md)
+- [ISP Proxies](https://kernel.sh/docs/proxies/isp.md)
+- [Datacenter Proxies](https://kernel.sh/docs/proxies/datacenter.md)
+- [Web Bot Auth](https://kernel.sh/docs/browsers/bot-detection/web-bot-auth.md): Cryptographically sign browser requests with Web Bot Auth
+- [Bots and agents](https://kernel.sh/docs/bots.md): Kernel's bots and agents, their purposes, and how to verify them with Web Bot Auth
+- [Extensions](https://kernel.sh/docs/browsers/extensions.md): Use browser extensions in Kernel browsers
+- [Private Networking](https://kernel.sh/docs/browsers/private-networking.md): Route browser traffic to private services through a VPN or tunnel in the browser session
+- [Custom Chrome Policies](https://kernel.sh/docs/browsers/chrome-policies.md): Customize Chrome behavior on individual browsers and browser pools using Chrome policies
+- [Telemetry Overview](https://kernel.sh/docs/browsers/telemetry/overview.md): Capture what happens inside a browser session
+- [Telemetry Categories](https://kernel.sh/docs/browsers/telemetry/categories.md): The categories a browser session can capture, what each contains, and their cost
+- [Stream Telemetry](https://kernel.sh/docs/browsers/telemetry/streaming.md): Consume a session's live telemetry stream from the SDK or CLI
+- [Browser Pools](https://kernel.sh/docs/browsers/pools.md): Configure a pool of ready-to-use browsers for instant acquisition
+- [Performance](https://kernel.sh/docs/browsers/performance.md)
+- [Developing](https://kernel.sh/docs/apps/develop.md)
+- [Deploying](https://kernel.sh/docs/apps/deploy.md)
+- [Invoking](https://kernel.sh/docs/apps/invoke.md)
+- [Stopping](https://kernel.sh/docs/apps/stop.md)
+- [Secrets](https://kernel.sh/docs/apps/secrets.md)
+- [Status](https://kernel.sh/docs/apps/status.md)
+- [Logs](https://kernel.sh/docs/apps/logs.md)
+- [Overview](https://kernel.sh/docs/skills/overview.md)
+- [Bot Detection](https://kernel.sh/docs/skills/bot-detection.md)
+- [Browser Profiles](https://kernel.sh/docs/skills/profiles.md)
+- [Overview](https://kernel.sh/docs/integrations/overview.md)
+- [Agent Browser](https://kernel.sh/docs/integrations/agent-browser.md)
+- [Browser Use](https://kernel.sh/docs/integrations/browser-use.md)
+- [Hermes Agent](https://kernel.sh/docs/integrations/hermes-agent.md): Run Hermes Agent browser tools on Kernel cloud browsers
+- [Overview](https://kernel.sh/docs/integrations/claude/overview.md): Give Claude a Kernel cloud browser — across Claude Code, Claude Desktop, the Agent SDK, and Managed Agents
+- [Claude Code and Desktop](https://kernel.sh/docs/integrations/claude/claude-code-and-desktop.md): Give Claude Code and Claude Desktop a Kernel cloud browser
+- [Claude Agent SDK](https://kernel.sh/docs/integrations/claude/claude-agent-sdk.md)
+- [Claude Managed Agents](https://kernel.sh/docs/integrations/claude/claude-managed-agents.md)
+- [Overview](https://kernel.sh/docs/integrations/computer-use/overview.md): Run computer use agents on Kernel cloud browsers
+- [Anthropic](https://kernel.sh/docs/integrations/computer-use/anthropic.md)
+- [Gemini](https://kernel.sh/docs/integrations/computer-use/gemini.md)
+- [OpenAGI](https://kernel.sh/docs/integrations/computer-use/openagi.md)
+- [OpenAI](https://kernel.sh/docs/integrations/computer-use/openai.md)
+- [Tzafon](https://kernel.sh/docs/integrations/computer-use/tzafon.md)
+- [Yutori](https://kernel.sh/docs/integrations/computer-use/yutori.md)
+- [Laminar](https://kernel.sh/docs/integrations/laminar.md)
+- [Magnitude](https://kernel.sh/docs/integrations/magnitude.md)
+- [Notte](https://kernel.sh/docs/integrations/notte.md)
+- [Vibium](https://kernel.sh/docs/integrations/vibium.md)
+- [Stagehand](https://kernel.sh/docs/integrations/stagehand.md)
+- [Terraform](https://kernel.sh/docs/integrations/terraform.md): Manage durable Kernel infrastructure with Terraform
+- [Val Town](https://kernel.sh/docs/integrations/valtown.md)
+- [Overview](https://kernel.sh/docs/integrations/vercel/overview.md): Integrate Kernel with Vercel for seamless browser automation in your web applications
+- [AI SDK Tool](https://kernel.sh/docs/integrations/vercel/ai-sdk.md): Build AI Agents with Kernel powered browser automation capabilities
+- [Eve Extension](https://kernel.sh/docs/integrations/vercel/eve-extension.md): Give your Vercel Eve agent a Kernel cloud browser in 1 loc
+- [Marketplace Integration](https://kernel.sh/docs/integrations/vercel/marketplace.md): Integrate Kernel through the Vercel Marketplace
+- [Overview](https://kernel.sh/docs/integrations/stripe-projects.md): Provision Kernel cloud browsers and plans through the Stripe Projects CLI
+- [Stripe Projects — browser API access](https://kernel.sh/docs/integrations/stripe-projects-browser.md): LLM context for the kernel/browser:api-access Stripe Projects service
+- [1Password](https://kernel.sh/docs/integrations/1password.md): Use credentials from your 1Password vaults for Managed Auth
+- [Scrapybara](https://kernel.sh/docs/migrations/scrapybara.md)
+- [Github](https://kernel.sh/docs/community/github.md)
+- [Discord](https://kernel.sh/docs/community/discord.md)
+- [FAQ](https://kernel.sh/docs/browsers/faq.md): Frequently asked questions about Kernel browsers
+- [Concepts](https://kernel.sh/docs/info/concepts.md)
+- [Pricing & Limits](https://kernel.sh/docs/info/pricing.md)
+- [Support](https://kernel.sh/docs/info/support.md)
+- [Browsers on Unikernels](https://kernel.sh/docs/info/unikernels.md)
+- [Zero Data Retention](https://kernel.sh/docs/info/zero-data-retention.md)
+- [List apps](https://kernel.sh/docs/api-reference/apps/list-apps.md): List applications. Optionally filter by app name and/or version label.
+- [List audit logs](https://kernel.sh/docs/api-reference/audit-logs/list-audit-logs.md): API for searching audit logs. Limited to at most 30 day search, returns up to 100 records per page. Not recommended for bulk export.
+- [Download an audit-log export chunk](https://kernel.sh/docs/api-reference/audit-logs/download-an-audit-log-export-chunk.md): Download an organization's audit log records for a time range as a file, for archival, compliance, or offline analysis. For interactive browsing, use GET /audit-logs.
+- [List audit log export destinations](https://kernel.sh/docs/api-reference/audit-logs/list-audit-log-export-destinations.md): List audit log export destinations for the organization with pagination support.
+- [Create an audit log export destination](https://kernel.sh/docs/api-reference/audit-logs/create-an-audit-log-export-destination.md): Create a paused destination. Activate it with a status update once the destination test passes. Requires an active Enterprise plan.
+- [Retrieve an audit log export destination](https://kernel.sh/docs/api-reference/audit-logs/retrieve-an-audit-log-export-destination.md): Retrieve details for a single audit log export destination by its ID.
+- [Delete an audit log export destination](https://kernel.sh/docs/api-reference/audit-logs/delete-an-audit-log-export-destination.md): Soft delete the destination and prevent new delivery attempts. An S3 upload already in progress may complete after the response.
+- [Update an audit log export destination](https://kernel.sh/docs/api-reference/audit-logs/update-an-audit-log-export-destination.md): Apply a partial update to a destination. Requires an active Enterprise plan. Returns 409 when the destination was changed concurrently, because the merged configuration this request validated is no longer the one that would be stored; retry against fresh state. Pausing prevents new delivery attempts…
+- [Test an audit log export destination](https://kernel.sh/docs/api-reference/audit-logs/test-an-audit-log-export-destination.md): Verify the destination is writable by assuming the configured role and uploading a temporary probe object with the same request metadata as a real delivery. Requires an active Enterprise plan.
+- [List auth connections](https://kernel.sh/docs/api-reference/managed-auth/list-auth-connections.md): List auth connections with optional filters for profile_name and domain.
+- [Create auth connection](https://kernel.sh/docs/api-reference/managed-auth/create-auth-connection.md): Creates an auth connection for a profile and domain combination. If the provided profile_name does not exist, it is created automatically. Returns 409 Conflict if an auth connection already exists for the given profile and domain.
+- [Get auth connection](https://kernel.sh/docs/api-reference/managed-auth/get-auth-connection.md): Retrieve an auth connection by its ID. Includes current flow state if a login is in progress.
+- [Delete auth connection](https://kernel.sh/docs/api-reference/managed-auth/delete-auth-connection.md): Deletes an auth connection and terminates its workflow. This will: - Delete the auth connection record - Terminate the Temporal workflow - Cancel any in-progress login flows
+- [Update auth connection](https://kernel.sh/docs/api-reference/managed-auth/update-auth-connection.md): Update an auth connection's configuration. Only the fields provided will be updated.
+- [Stream login flow events via SSE](https://kernel.sh/docs/api-reference/managed-auth/stream-login-flow-events-via-sse.md): Establishes a Server-Sent Events (SSE) stream that delivers real-time login flow state updates. The stream terminates automatically once the flow reaches a terminal state (SUCCESS, FAILED, EXPIRED, CANCELED).
+- [Start login flow](https://kernel.sh/docs/api-reference/managed-auth/start-login-flow.md): Starts a login flow for the auth connection. Returns immediately with a hosted URL for the user to complete authentication, or triggers automatic re-auth if credentials are stored.
+- [Submit field values](https://kernel.sh/docs/api-reference/managed-auth/submit-field-values.md): Submits field values for the login form. Poll the auth connection to track progress and get results.
+- [Get auth connection event timeline](https://kernel.sh/docs/api-reference/managed-auth/get-auth-connection-event-timeline.md): Returns a chronological timeline of events for an auth connection — login attempts, automatic re-auth attempts, and health checks. Events are returned newest-first.
+- [Get authentication context](https://kernel.sh/docs/api-reference/authentication/get-authentication-context.md): Returns the authenticated principal, organization, credential scope, and effective request scope. The response is derived from the verified request context and does not expose credential secrets.
+- [List browser pools](https://kernel.sh/docs/api-reference/browser-pools/list-browser-pools.md): List browser pools in the resolved project.
+- [Create a browser pool](https://kernel.sh/docs/api-reference/browser-pools/create-a-browser-pool.md): Create a new browser pool with the specified configuration and size. Pooled browsers load their profile read-only: any save_changes on the profile is ignored (not rejected), so pooled browsers never persist changes back to the profile.
+- [Get browser pool details](https://kernel.sh/docs/api-reference/browser-pools/get-browser-pool-details.md): Retrieve details for a single browser pool by its ID or name.
+- [Delete a browser pool](https://kernel.sh/docs/api-reference/browser-pools/delete-a-browser-pool.md): Delete a browser pool and all browsers in it. By default, deletion is blocked if browsers are currently leased. Use force=true to terminate leased browsers.
+- [Update a browser pool](https://kernel.sh/docs/api-reference/browser-pools/update-a-browser-pool.md): Updates the configuration used to create browsers in the pool. As with creation, save_changes on the pool profile is ignored (not rejected); pooled browsers never persist changes back to the profile. To clear the profile reference, send `profile: { "id": "" }`. Clearing the profile also disables `re…
+- [Acquire a browser from the pool](https://kernel.sh/docs/api-reference/browser-pools/acquire-a-browser-from-the-pool.md): Long-polling endpoint to acquire a browser from the pool. Returns immediately when a browser is available, or returns 204 No Content when the poll times out. The client should retry the request to continue waiting for a browser. The acquired browser will use the pool's timeout_seconds for its idle t…
+- [Flush all idle browsers in the pool](https://kernel.sh/docs/api-reference/browser-pools/flush-all-idle-browsers-in-the-pool.md): Destroys all idle browsers in the pool; leased browsers are not affected.
+- [Release a browser back to the pool](https://kernel.sh/docs/api-reference/browser-pools/release-a-browser-back-to-the-pool.md): Release a browser back to the pool, optionally recreating the browser instance.
+- [List browser sessions](https://kernel.sh/docs/api-reference/browsers/list-browser-sessions.md): List all browser sessions with pagination support. Use status parameter to filter by session state.
+- [Create a browser session](https://kernel.sh/docs/api-reference/browsers/create-a-browser-session.md): Create a new browser session from within an action.
+- [Get browser session details](https://kernel.sh/docs/api-reference/browsers/get-browser-session-details.md): Get information about a browser session.
+- [Delete a browser session by ID or name.](https://kernel.sh/docs/api-reference/browsers/delete-a-browser-session-by-id-or-name.md): Delete a browser session by ID or name
+- [Update browser session](https://kernel.sh/docs/api-reference/browsers/update-browser-session.md): Update a browser session.
+- [Make an HTTP request through the browser's network stack](https://kernel.sh/docs/api-reference/browsers/make-an-http-request-through-the-browsers-network-stack.md): Sends an HTTP request through Chrome's HTTP request stack, inheriting the browser's TLS fingerprint, cookies, proxy configuration, and headers. Returns a structured JSON response with status, headers, body, and timing.
+- [Ad-hoc upload one or more unpacked extensions to a running browser instance.](https://kernel.sh/docs/api-reference/browsers/ad-hoc-upload-one-or-more-unpacked-extensions-to-a-running-browser-instance.md): Loads one or more unpacked extensions and restarts Chromium on the browser instance.
+- [Execute a batch of computer actions sequentially](https://kernel.sh/docs/api-reference/browser-computer-controls/execute-a-batch-of-computer-actions-sequentially.md): Send an array of computer actions to execute in order on the browser instance. Execution stops on the first error. This reduces network latency compared to sending individual action requests.
+- [Simulate a mouse click action on the browser instance](https://kernel.sh/docs/api-reference/browser-computer-controls/simulate-a-mouse-click-action-on-the-browser-instance.md)
+- [Read text from the clipboard on the browser instance](https://kernel.sh/docs/api-reference/browser-computer-controls/read-text-from-the-clipboard-on-the-browser-instance.md)
+- [Write text to the clipboard on the browser instance](https://kernel.sh/docs/api-reference/browser-computer-controls/write-text-to-the-clipboard-on-the-browser-instance.md)
+- [Set cursor visibility](https://kernel.sh/docs/api-reference/browser-computer-controls/set-cursor-visibility.md)
+- [Drag the mouse along a path](https://kernel.sh/docs/api-reference/browser-computer-controls/drag-the-mouse-along-a-path.md)
+- [Get the current mouse cursor position on the browser instance](https://kernel.sh/docs/api-reference/browser-computer-controls/get-the-current-mouse-cursor-position-on-the-browser-instance.md)
+- [Move the mouse cursor to the specified coordinates on the browser instance](https://kernel.sh/docs/api-reference/browser-computer-controls/move-the-mouse-cursor-to-the-specified-coordinates-on-the-browser-instance.md)
+- [Press one or more keys on the host computer](https://kernel.sh/docs/api-reference/browser-computer-controls/press-one-or-more-keys-on-the-host-computer.md)
+- [Capture a screenshot of the browser instance](https://kernel.sh/docs/api-reference/browser-computer-controls/capture-a-screenshot-of-the-browser-instance.md)
+- [Scroll the mouse wheel at a position on the host computer](https://kernel.sh/docs/api-reference/browser-computer-controls/scroll-the-mouse-wheel-at-a-position-on-the-host-computer.md)
+- [Type text on the browser instance](https://kernel.sh/docs/api-reference/browser-computer-controls/type-text-on-the-browser-instance.md)
+- [Create a new directory](https://kernel.sh/docs/api-reference/browser-filesystem/create-a-new-directory.md)
+- [Delete a directory](https://kernel.sh/docs/api-reference/browser-filesystem/delete-a-directory.md)
+- [Delete a file](https://kernel.sh/docs/api-reference/browser-filesystem/delete-a-file.md)
+- [Download a directory as a ZIP archive](https://kernel.sh/docs/api-reference/browser-filesystem/download-a-directory-as-a-zip-archive.md): Returns a ZIP file containing the contents of the specified directory.
+- [Get information about a file or directory](https://kernel.sh/docs/api-reference/browser-filesystem/get-information-about-a-file-or-directory.md)
+- [List files in a directory](https://kernel.sh/docs/api-reference/browser-filesystem/list-files-in-a-directory.md)
+- [Move or rename a file or directory](https://kernel.sh/docs/api-reference/browser-filesystem/move-or-rename-a-file-or-directory.md)
+- [Read file contents](https://kernel.sh/docs/api-reference/browser-filesystem/read-file-contents.md)
+- [Set file or directory permissions/ownership](https://kernel.sh/docs/api-reference/browser-filesystem/set-file-or-directory-permissionsownership.md)
+- [Upload one or more files](https://kernel.sh/docs/api-reference/browser-filesystem/upload-one-or-more-files.md): Allows uploading single or multiple files to the remote filesystem.
+- [Upload a zip archive and extract it](https://kernel.sh/docs/api-reference/browser-filesystem/upload-a-zip-archive-and-extract-it.md): Upload a zip file and extract its contents to the specified destination path.
+- [Watch a directory for changes](https://kernel.sh/docs/api-reference/browser-filesystem/watch-a-directory-for-changes.md)
+- [Stop watching a directory](https://kernel.sh/docs/api-reference/browser-filesystem/stop-watching-a-directory.md)
+- [Stream filesystem events for a watch](https://kernel.sh/docs/api-reference/browser-filesystem/stream-filesystem-events-for-a-watch.md)
+- [Write or create a file](https://kernel.sh/docs/api-reference/browser-filesystem/write-or-create-a-file.md)
+- [Stream log files on the browser instance via SSE](https://kernel.sh/docs/api-reference/browser-logs/stream-log-files-on-the-browser-instance-via-sse.md)
+- [Execute Playwright/TypeScript code against the browser](https://kernel.sh/docs/api-reference/browser-playwright/execute-playwrighttypescript-code-against-the-browser.md): Execute arbitrary Playwright code in a fresh execution context against the browser. The code runs in the same VM as the browser, minimizing latency and maximizing throughput. It has access to 'page', 'context', and 'browser' variables. It can `return` a value, and this value is returned in the respo…
+- [Execute a command synchronously](https://kernel.sh/docs/api-reference/browser-processes/execute-a-command-synchronously.md)
+- [Execute a command asynchronously](https://kernel.sh/docs/api-reference/browser-processes/execute-a-command-asynchronously.md)
+- [Send signal to process](https://kernel.sh/docs/api-reference/browser-processes/send-signal-to-process.md)
+- [Resize a PTY-backed process terminal](https://kernel.sh/docs/api-reference/browser-processes/resize-a-pty-backed-process-terminal.md)
+- [Get process status](https://kernel.sh/docs/api-reference/browser-processes/get-process-status.md)
+- [Write to process stdin](https://kernel.sh/docs/api-reference/browser-processes/write-to-process-stdin.md)
+- [Stream process stdout via SSE](https://kernel.sh/docs/api-reference/browser-processes/stream-process-stdout-via-sse.md)
+- [List browser session replays](https://kernel.sh/docs/api-reference/browser-replays/list-browser-session-replays.md): List all replays for the specified browser session.
+- [Start a browser session replay recording](https://kernel.sh/docs/api-reference/browser-replays/start-a-browser-session-replay-recording.md): Start recording the browser session and return a replay ID.
+- [Download a replay recording](https://kernel.sh/docs/api-reference/browser-replays/download-a-replay-recording.md): Download or stream the specified replay recording.
+- [Stop a browser session replay recording](https://kernel.sh/docs/api-reference/browser-replays/stop-a-browser-session-replay-recording.md): Stop the specified replay recording and persist the video.
+- [Read telemetry events for a browser session](https://kernel.sh/docs/api-reference/browser-telemetry/read-telemetry-events-for-a-browser-session.md): Reads a page of telemetry events for the browser session. To page through results, pass the X-Next-Offset value from the previous response as offset and repeat while X-Has-More is true. Returns an empty list when telemetry data is unavailable.
+- [Stream telemetry events via SSE](https://kernel.sh/docs/api-reference/browser-telemetry/stream-telemetry-events-via-sse.md): Streams browser telemetry events as a server-sent events (SSE) stream. The stream closes when the browser session terminates. Each event frame includes an id: field containing a monotonically increasing sequence number; pass it as Last-Event-ID on reconnect to resume without gaps. The event: field i…
+- [List OTLP destinations](https://kernel.sh/docs/api-reference/browser-telemetry/list-otlp-destinations.md): List OTLP export destinations in the resolved project.
+- [Create an OTLP destination](https://kernel.sh/docs/api-reference/browser-telemetry/create-an-otlp-destination.md): Create an OTLP export destination in the resolved project. Names must be unique within the project.
+- [Get OTLP destination by ID or name](https://kernel.sh/docs/api-reference/browser-telemetry/get-otlp-destination-by-id-or-name.md): Retrieve a single OTLP destination in the resolved project by its ID or name.
+- [Delete OTLP destination by ID or name](https://kernel.sh/docs/api-reference/browser-telemetry/delete-otlp-destination-by-id-or-name.md): Delete an OTLP destination. Sessions bound to it are still exporting, so the delete is refused with a 409 while any exist; either wait for those sessions to end or delete them first. It is refused the same way while a managed auth connection still selects it, because that connection re-resolves the…
+- [Update OTLP destination by ID or name](https://kernel.sh/docs/api-reference/browser-telemetry/update-otlp-destination-by-id-or-name.md): Update an OTLP destination. Sessions already exporting to it pick up the new values without restarting, which makes this the way to rotate credentials without interrupting export.
+- [List deployments](https://kernel.sh/docs/api-reference/deployments/list-deployments.md): List deployments. Optionally filter by application name and version.
+- [Create a deployment](https://kernel.sh/docs/api-reference/deployments/create-a-deployment.md): Create a new deployment.
+- [Get deployment details](https://kernel.sh/docs/api-reference/deployments/get-deployment-details.md): Get information about a deployment's status.
+- [Delete a deployment](https://kernel.sh/docs/api-reference/deployments/delete-a-deployment.md): Stops a running deployment and marks it for deletion. If the deployment is already in a terminal state (stopped or failed), returns immediately.
+- [Stream deployment events via SSE](https://kernel.sh/docs/api-reference/deployments/stream-deployment-events-via-sse.md): Establishes a Server-Sent Events (SSE) stream that delivers real-time logs and status updates for a deployment. The stream terminates automatically once the deployment reaches a terminal state.
+- [List browser extensions](https://kernel.sh/docs/api-reference/extensions/list-browser-extensions.md): List extensions in the resolved project.
+- [Upload a browser extension](https://kernel.sh/docs/api-reference/extensions/upload-a-browser-extension.md): Upload a zip file containing an unpacked browser extension. Optionally provide a unique name for later reference.
+- [Download unpacked extension from Chrome Web Store](https://kernel.sh/docs/api-reference/extensions/download-unpacked-extension-from-chrome-web-store.md): Returns a ZIP archive containing the unpacked extension fetched from the Chrome Web Store.
+- [Download extension archive](https://kernel.sh/docs/api-reference/extensions/download-extension-archive.md): Download the extension as a ZIP archive by ID or name.
+- [Delete extension by ID or name](https://kernel.sh/docs/api-reference/extensions/delete-extension-by-id-or-name.md): Delete an extension by its ID or by its name.
+- [Get extension metadata](https://kernel.sh/docs/api-reference/extensions/get-extension-metadata.md): Get an extension's metadata (name, size, timestamps) by ID or name, without downloading the archive.
+- [List invocations](https://kernel.sh/docs/api-reference/invocations/list-invocations.md): List invocations. Optionally filter by application name, action name, status, deployment ID, or start time.
+- [Invoke an action](https://kernel.sh/docs/api-reference/invocations/invoke-an-action.md): Invoke an action.
+- [Get invocation details](https://kernel.sh/docs/api-reference/invocations/get-invocation-details.md): Get details about an invocation's status and output.
+- [Update invocation](https://kernel.sh/docs/api-reference/invocations/update-invocation.md): Update an invocation's status or output. This can be used to cancel an invocation by setting the status to "failed".
+- [List browsers for an invocation](https://kernel.sh/docs/api-reference/invocations/list-browsers-for-an-invocation.md): Returns all active browser sessions created within the specified invocation.
+- [Delete browser sessions for an invocation](https://kernel.sh/docs/api-reference/invocations/delete-browser-sessions-for-an-invocation.md): Delete all browser sessions created within the specified invocation.
+- [Stream invocation events via SSE](https://kernel.sh/docs/api-reference/invocations/stream-invocation-events-via-sse.md): Establishes a Server-Sent Events (SSE) stream that delivers real-time logs and status updates for an invocation. The stream terminates automatically once the invocation reaches a terminal state.
+- [List API keys](https://kernel.sh/docs/api-reference/api-keys/list-api-keys.md): List API keys for the authenticated organization. API keys are masked.
+- [Create an API key](https://kernel.sh/docs/api-reference/api-keys/create-an-api-key.md): Create a new API key within the authenticated organization.
+- [Get an API key](https://kernel.sh/docs/api-reference/api-keys/get-an-api-key.md): Retrieve an API key by ID for the authenticated organization. API keys are masked.
+- [Delete an API key](https://kernel.sh/docs/api-reference/api-keys/delete-an-api-key.md): Delete an API key. A key cannot delete itself; use a different key to delete this one.
+- [Update an API key](https://kernel.sh/docs/api-reference/api-keys/update-an-api-key.md): Update an API key's name.
+- [Rotate an API key](https://kernel.sh/docs/api-reference/api-keys/rotate-an-api-key.md): Rotate an API key. Issues a new key that copies the name and project of the rotated key, and schedules the rotated key to expire after a grace period so in-flight callers can swap over. The new plaintext key is returned once.
+- [Get organization entitlements](https://kernel.sh/docs/api-reference/organization/get-organization-entitlements.md): Get the authenticated organization's effective feature access and constraints after applying its plan, active trial treatment, plan status, and organization-specific overrides. Null constraint values mean unlimited.
+- [Get organization limits](https://kernel.sh/docs/api-reference/organization/get-organization-limits.md): Get the organization's effective limits and managed auth usage.
+- [Update organization limits](https://kernel.sh/docs/api-reference/organization/update-organization-limits.md): Set the default per-project concurrency cap applied to projects without an explicit override. Set the value to 0 to remove the default; omit to leave it unchanged. The default cannot exceed the organization's concurrency limit.
+- [List projects](https://kernel.sh/docs/api-reference/projects/list-projects.md): List projects for the authenticated organization.
+- [Create a project](https://kernel.sh/docs/api-reference/projects/create-a-project.md): Create a new project within the authenticated organization.
+- [Get a project by ID or name](https://kernel.sh/docs/api-reference/projects/get-a-project-by-id-or-name.md): Get a project by its ID or by its name. Names are unique within an organization.
+- [Delete a project by ID or name](https://kernel.sh/docs/api-reference/projects/delete-a-project-by-id-or-name.md): Soft-delete a project. The project must be empty (no active resources).
+- [Update a project by ID or name](https://kernel.sh/docs/api-reference/projects/update-a-project-by-id-or-name.md): Update a project's name or status.
+- [Get project limits by ID or name](https://kernel.sh/docs/api-reference/projects/get-project-limits-by-id-or-name.md): Get the resource limit overrides for a project. Null values mean no project-level cap (org limit applies).
+- [Update project limits by ID or name](https://kernel.sh/docs/api-reference/projects/update-project-limits-by-id-or-name.md): Update resource limit overrides for a project. Only fields present in the request are modified. Set a field to 0 to remove that limit cap; omit a field to leave it unchanged.
+- [List projects](https://kernel.sh/docs/api-reference/projects/list-projects-1.md): Deprecated: use `GET /org/projects` instead. This route will be removed on 2026-11-24.
+- [Create a project](https://kernel.sh/docs/api-reference/projects/create-a-project-1.md): Deprecated: use `POST /org/projects` instead. This route will be removed on 2026-11-24.
+- [Get a project by ID or name](https://kernel.sh/docs/api-reference/projects/get-a-project-by-id-or-name-1.md): Deprecated: use `GET /org/projects/{id_or_name}` instead. This route will be removed on 2026-11-24.
+- [Delete a project by ID or name](https://kernel.sh/docs/api-reference/projects/delete-a-project-by-id-or-name-1.md): Deprecated: use `DELETE /org/projects/{id_or_name}` instead. This route will be removed on 2026-11-24.
+- [Update a project by ID or name](https://kernel.sh/docs/api-reference/projects/update-a-project-by-id-or-name-1.md): Deprecated: use `PATCH /org/projects/{id_or_name}` instead. This route will be removed on 2026-11-24.
+- [Get project limits by ID or name](https://kernel.sh/docs/api-reference/projects/get-project-limits-by-id-or-name-1.md): Deprecated: use `GET /org/projects/{id_or_name}/limits` instead. This route will be removed on 2026-11-24.
+- [Update project limits by ID or name](https://kernel.sh/docs/api-reference/projects/update-project-limits-by-id-or-name-1.md): Deprecated: use `PATCH /org/projects/{id_or_name}/limits` instead. This route will be removed on 2026-11-24.
+- [List profiles](https://kernel.sh/docs/api-reference/profiles/list-profiles.md): List profiles with optional filtering and pagination.
+- [Create a new profile](https://kernel.sh/docs/api-reference/profiles/create-a-new-profile.md): Create a browser profile that can be used to load state into future browser sessions.
+- [Get profile by ID or name](https://kernel.sh/docs/api-reference/profiles/get-profile-by-id-or-name.md): Retrieve details for a single profile by its ID or name.
+- [Delete profile by ID or name](https://kernel.sh/docs/api-reference/profiles/delete-profile-by-id-or-name.md): Delete a profile by its ID or by its name.
+- [Rename profile by ID or name](https://kernel.sh/docs/api-reference/profiles/rename-profile-by-id-or-name.md): Update a profile's name. Names must be unique within the logical project; during the default-project migration, unscoped profiles and profiles in the org default project are treated as the same project. Duplicate-name conflicts are checked before update but are best-effort because there is no backin…
+- [Download profile archive](https://kernel.sh/docs/api-reference/profiles/download-profile-archive.md): Downloads the profile in its stored format by default. Current profiles are returned as zstd-compressed tar archives, while legacy profiles remain JSON. Set `format=tar` to decompress current profiles during download; legacy profiles remain JSON.
+- [List proxies](https://kernel.sh/docs/api-reference/proxies/list-proxies.md): List proxies in the resolved project.
+- [Create a proxy](https://kernel.sh/docs/api-reference/proxies/create-a-proxy.md): Create a new proxy configuration in the resolved project.
+- [Get proxy by ID](https://kernel.sh/docs/api-reference/proxies/get-proxy-by-id.md): Retrieve a proxy in the resolved project by ID.
+- [Delete proxy by ID](https://kernel.sh/docs/api-reference/proxies/delete-proxy-by-id.md): Soft delete a proxy. Sessions referencing it are not modified.
+- [Rename proxy by ID](https://kernel.sh/docs/api-reference/proxies/rename-proxy-by-id.md): Update a proxy's name. Proxy names are not unique and are not ID-or-name addressable on this endpoint; duplicate names are allowed. Name-based session-create lookups can remain ambiguous until callers resolve proxies by ID or the API adds a stronger uniqueness contract.
+- [Check proxy health](https://kernel.sh/docs/api-reference/proxies/check-proxy-health.md): Run a health check on the proxy to verify it's working. Optionally specify a URL to test reachability against a specific target. For ISP and datacenter proxies, this reliably tests whether the target site is reachable from the proxy's stable exit IP. For residential and mobile proxies, the exit node…
+- [Kernel CLI](https://kernel.sh/docs/reference/cli.md)
+- [Create Kernel App](https://kernel.sh/docs/reference/cli/create.md)
+- [Authentication](https://kernel.sh/docs/reference/cli/auth.md)
+- [Apps](https://kernel.sh/docs/reference/cli/apps.md)
+- [Browsers](https://kernel.sh/docs/reference/cli/browsers.md)
+- [Browser Pools](https://kernel.sh/docs/reference/cli/browser-pools.md)
+- [Profiles](https://kernel.sh/docs/reference/cli/profiles.md)
+- [Proxies](https://kernel.sh/docs/reference/cli/proxies.md)
+- [Extensions](https://kernel.sh/docs/reference/cli/extensions.md)
+- [Managed Auth](https://kernel.sh/docs/reference/cli/managed-auth.md)
+- [Projects](https://kernel.sh/docs/reference/cli/projects.md)
+- [API Keys](https://kernel.sh/docs/reference/cli/api-keys.md)
+- [Organization Limits](https://kernel.sh/docs/reference/cli/org.md)
+- [Audit Logs](https://kernel.sh/docs/reference/cli/audit-logs.md)
+- [MCP](https://kernel.sh/docs/reference/cli/mcp.md)
+- [MCP Server](https://kernel.sh/docs/reference/mcp-server.md): Access Kernel's cloud-based browsers via MCP
+- [Transports](https://kernel.sh/docs/reference/mcp-server/transports.md): Connect to the Kernel MCP server over streamable HTTP or stdio
+- [Authentication](https://kernel.sh/docs/reference/mcp-server/authentication.md): Authenticate to the Kernel MCP server with OAuth or an API key
+- [Claude](https://kernel.sh/docs/reference/mcp-server/clients/claude.md): Connect Claude.ai, Claude Desktop, and Claude Code to the Kernel MCP server
+- [Cursor](https://kernel.sh/docs/reference/mcp-server/clients/cursor.md): Connect Cursor to the Kernel MCP server
+- [OpenCode](https://kernel.sh/docs/reference/mcp-server/clients/opencode.md): Connect OpenCode to the Kernel MCP server
+- [Goose](https://kernel.sh/docs/reference/mcp-server/clients/goose.md): Connect Goose Desktop and Goose CLI to the Kernel MCP server
+- [Visual Studio Code](https://kernel.sh/docs/reference/mcp-server/clients/vscode.md): Connect Visual Studio Code to the Kernel MCP server
+- [Windsurf](https://kernel.sh/docs/reference/mcp-server/clients/windsurf.md): Connect Windsurf to the Kernel MCP server
+- [Zed](https://kernel.sh/docs/reference/mcp-server/clients/zed.md): Connect Zed to the Kernel MCP server
+- [Smithery](https://kernel.sh/docs/reference/mcp-server/clients/smithery.md): Connect to the Kernel MCP server through Smithery
+- [Other Clients](https://kernel.sh/docs/reference/mcp-server/clients/others.md): Connect any MCP-capable tool to the Kernel MCP server
+- [manage_browsers](https://kernel.sh/docs/reference/mcp-server/tools/manage-browsers.md): Create, list, get, and delete browser sessions
+- [manage_profiles](https://kernel.sh/docs/reference/mcp-server/tools/manage-profiles.md): Set up, retrieve, rename, and delete browser profiles
+- [manage_browser_pools](https://kernel.sh/docs/reference/mcp-server/tools/manage-browser-pools.md): Create and manage pools of pre-provisioned browsers
+- [manage_proxies](https://kernel.sh/docs/reference/mcp-server/tools/manage-proxies.md): Create, retrieve, rename, check, and delete proxy configurations
+- [manage_extensions](https://kernel.sh/docs/reference/mcp-server/tools/manage-extensions.md): List and delete uploaded browser extensions
+- [manage_apps](https://kernel.sh/docs/reference/mcp-server/tools/manage-apps.md): List apps, invoke actions, and check deployments and invocations
+- [computer_action](https://kernel.sh/docs/reference/mcp-server/tools/computer-action.md): Mouse, keyboard, and screenshot controls for browser sessions
+- [execute_playwright_code](https://kernel.sh/docs/reference/mcp-server/tools/execute-playwright-code.md): Run Playwright/TypeScript code against a browser session
+- [manage_replays](https://kernel.sh/docs/reference/mcp-server/tools/manage-replays.md): Start, stop, and list video replay recordings for a browser session
+- [exec_command](https://kernel.sh/docs/reference/mcp-server/tools/exec-command.md): Run shell commands inside a browser VM
+- [search_docs](https://kernel.sh/docs/reference/mcp-server/tools/search-docs.md): Search Kernel platform documentation and guides
+- [Resources](https://kernel.sh/docs/reference/mcp-server/resources.md): Read browsers, browser pools, profiles, and apps as MCP resources
+- [Prompts](https://kernel.sh/docs/reference/mcp-server/prompts.md): Prebuilt prompts for Kernel concepts and debugging
+- [Troubleshooting](https://kernel.sh/docs/reference/mcp-server/troubleshooting.md): Fix connection and authentication issues with the Kernel MCP server
+- [Examples](https://kernel.sh/docs/reference/mcp-server/examples.md): See the Kernel MCP server in action
+
+## OpenAPI Specs
+
+- [spec](https://api.onkernel.com/spec.json)
+- [browser](https://kernel.sh/docs/reference/browser.yaml)
+
+## Optional
+
+- [Changelog](https://www.kernel.sh/changelog)

@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kernel API Keys Profiles API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.onkernel.com/profiles",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of profiles to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset the number of profiles to return."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search profiles by name or ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List profiles with optional filtering and pagination."
+        },
+        {
+          "info": {
+            "name": "Create a new profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.onkernel.com/profiles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a browser profile that can be used to load state into future browser sessions."
+        },
+        {
+          "info": {
+            "name": "Get profile by ID or name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.onkernel.com/profiles/:id_or_name",
+            "params": [
+              {
+                "name": "id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Profile ID or name"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve details for a single profile by its ID or name."
+        },
+        {
+          "info": {
+            "name": "Delete profile by ID or name",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.onkernel.com/profiles/:id_or_name",
+            "params": [
+              {
+                "name": "id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Profile ID or profile name"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a profile by its ID or by its name."
+        },
+        {
+          "info": {
+            "name": "Download profile archive",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.onkernel.com/profiles/:id_or_name/download",
+            "params": [
+              {
+                "name": "id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Profile ID or name"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a zstd-compressed tar file of the full user-data directory."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

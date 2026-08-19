@@ -1,0 +1,279 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kernel API Keys Browsers API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Browsers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List browser sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.onkernel.com/browsers",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter sessions by status. \"active\" returns only active sessions (default), \"deleted\" returns only soft-deleted sessions, \"all\" returns both."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "Deprecated: Use status=all instead. When true, includes soft-deleted browser sessions in the results alongside active sessions."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip. Defaults to 0."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search browsers by session ID, profile ID, proxy ID, or pool name."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all browser sessions with pagination support. Use status parameter to filter by session state."
+        },
+        {
+          "info": {
+            "name": "Create a browser session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.onkernel.com/browsers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new browser session from within an action."
+        },
+        {
+          "info": {
+            "name": "Get browser session details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.onkernel.com/browsers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "htzv5orfit78e1m2biiifpbv",
+                "type": "path",
+                "description": "Browser session ID"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "When true, includes soft-deleted browser sessions in the lookup."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get information about a browser session."
+        },
+        {
+          "info": {
+            "name": "Update browser session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.onkernel.com/browsers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "htzv5orfit78e1m2biiifpbv",
+                "type": "path",
+                "description": "Browser session ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a browser session."
+        },
+        {
+          "info": {
+            "name": "Delete a browser session by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.onkernel.com/browsers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "htzv5orfit78e1m2biiifpbv",
+                "type": "path",
+                "description": "Browser session ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a browser session by ID"
+        },
+        {
+          "info": {
+            "name": "Ad-hoc upload one or more unpacked extensions to a running browser instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.onkernel.com/browsers/:id/extensions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Browser session ID"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "extensions",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Loads one or more unpacked extensions and restarts Chromium on the browser instance."
+        },
+        {
+          "info": {
+            "name": "Execute a batch of computer actions sequentially",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.onkernel.com/browsers/:id/computer/batch",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Browser session ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send an array of computer actions to execute in order on the browser instance.\nExecution stops on the first error. This reduces network latency compared to\nsending individual action requests.\n"
+        },
+        {
+          "info": {
+            "name": "Get the current mouse cursor position on the browser instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.onkernel.com/browsers/:id/computer/get_mouse_position",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Browser session ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the current mouse cursor position on the browser instance"
+        },
+        {
+          "info": {
+            "name": "Make an HTTP request through the browser's network stack",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.onkernel.com/browsers/:id/curl",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Browser session ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Sends an HTTP request through Chrome's HTTP request stack, inheriting\nthe browser's TLS fingerprint, cookies, proxy configuration, and headers.\nReturns a structured JSON response with status, headers, body, and timing.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kernel API Keys Browser Telemetry API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Browser Telemetry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Stream telemetry events via SSE",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.onkernel.com/browsers/:id/telemetry",
+            "headers": [
+              {
+                "name": "Last-Event-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Browser session ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Streams browser telemetry events as a server-sent events (SSE) stream. The stream closes when the browser session terminates. Each event frame includes an id: field containing a monotonically increasing sequence number; pass it as Last-Event-ID on reconnect to resume without gaps. The event: field is never set; all frames carry JSON in the data: field. A keepalive comment frame is sent every 15 seconds when no events arrive. Returns 404 if the browser session does not exist. If telemetry was not"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

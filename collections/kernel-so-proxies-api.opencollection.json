@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kernel API Keys Proxies API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Proxies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List proxies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.onkernel.com/proxies",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List proxies owned by the caller's organization."
+        },
+        {
+          "info": {
+            "name": "Create a proxy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.onkernel.com/proxies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new proxy configuration for the caller's organization."
+        },
+        {
+          "info": {
+            "name": "Get proxy by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.onkernel.com/proxies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a proxy belonging to the caller's organization by ID."
+        },
+        {
+          "info": {
+            "name": "Delete proxy by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.onkernel.com/proxies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Soft delete a proxy. Sessions referencing it are not modified."
+        },
+        {
+          "info": {
+            "name": "Check proxy health",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.onkernel.com/proxies/:id/check",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Run a health check on the proxy to verify it's working. Optionally specify a URL to test reachability against a specific target. For ISP and datacenter proxies, this reliably tests whether the target site is reachable from the proxy's stable exit IP. For residential and mobile proxies, the exit node varies between requests, so this validates proxy configuration and connectivity rather than guaranteeing site-specific reachability."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
