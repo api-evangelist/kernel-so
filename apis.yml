@@ -1,6 +1,7 @@
 aid: kernel-so
 url: https://raw.githubusercontent.com/api-evangelist/kernel-so/refs/heads/main/apis.yml
 name: Kernel
+specificationVersion: '0.23'
 tags:
 - Agents
 - AI
