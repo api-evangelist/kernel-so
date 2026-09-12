@@ -428,6 +428,8 @@ apis:
   - type: LlmsText
     url: https://www.kernel.sh/docs/llms.txt
 common:
+- type: Website
+  url: https://www.kernel.sh/
 - type: AgenticAccess
   url: agentic-access/kernel-so-agentic-access.yml
 - type: TrustCenter
