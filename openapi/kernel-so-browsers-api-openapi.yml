@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kernel API Keys Browsers API
+  title: Kernel Browsers API
   description: Developer tools and cloud infrastructure for AI agents to use web browsers
   version: 0.1.0
 servers:
@@ -188,8 +188,7 @@ paths:
       operationId: deleteBrowsersById
       tags:
       - Browsers
-      summary: Delete a browser session by ID.
-      description: Delete a browser session by ID
+      summary: Delete a browser session by ID
       security:
       - bearerAuth: []
       parameters:
@@ -269,7 +268,7 @@ paths:
       operationId: uploadExtensionsToBrowser
       tags:
       - Browsers
-      summary: Ad-hoc upload one or more unpacked extensions to a running browser instance.
+      summary: Ad-hoc upload one or more unpacked extensions to a running browser instance
       description: Loads one or more unpacked extensions and restarts Chromium on the browser instance.
       security:
       - bearerAuth: []
@@ -335,9 +334,7 @@ paths:
 
         Execution stops on the first error. This reduces network latency compared to
 
-        sending individual action requests.
-
-        '
+        sending individual action requests.'
       operationId: batchComputerAction
       tags:
       - Browsers
@@ -414,9 +411,7 @@ paths:
 
         the browser''s TLS fingerprint, cookies, proxy configuration, and headers.
 
-        Returns a structured JSON response with status, headers, body, and timing.
-
-        '
+        Returns a structured JSON response with status, headers, body, and timing.'
       operationId: browserCurl
       tags:
       - Browsers
@@ -462,68 +457,55 @@ paths:
       - lang: Go
         source: "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\n\t\"github.com/kernel/kernel-go-sdk\"\n\t\"github.com/kernel/kernel-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := kernel.NewClient(\n\t\toption.WithAPIKey(\"My API Key\"),\n\t)\n\tresponse, err := client.Browsers.Curl(\n\t\tcontext.TODO(),\n\t\t\"id\",\n\t\tkernel.BrowserCurlParams{\n\t\t\tURL: \"url\",\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf(\"%+v\\n\", response.Body)\n}\n"
 components:
+  responses:
+    Forbidden:
+      description: Forbidden – insufficient permissions or plan
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Too Many Requests – rate limit exceeded
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad Request – invalid input
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    CapacityExhausted:
+      description: Capacity exhausted, unable to fulfill request at this time
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized – missing or invalid authorization token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    ErrorDetail:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Lower-level error code providing more specific detail
-          example: invalid_input
-        message:
-          type: string
-          description: Further detail about the error
-          example: Provided version string is not semver compliant
-    BrowserTelemetryCategoryConfig:
-      type: object
-      description: Per-category telemetry configuration.
-      properties:
-        enabled:
-          type: boolean
-          description: Whether this category is captured. Defaults to true if omitted.
-    BrowserCurlRequest:
-      type: object
-      description: Request to make an HTTP request through the browser's network stack.
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          description: Target URL (must be http or https).
-        method:
-          type: string
-          description: HTTP method.
-          enum:
-          - GET
-          - HEAD
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          - OPTIONS
-          default: GET
-        headers:
-          type: object
-          description: Custom headers merged with browser defaults.
-          additionalProperties:
-            type: string
-        body:
-          type: string
-          description: Request body (for POST/PUT/PATCH).
-        timeout_ms:
-          type: integer
-          description: Request timeout in milliseconds.
-          minimum: 1000
-          maximum: 60000
-          default: 30000
-        response_encoding:
-          type: string
-          description: Encoding for the response body. Use base64 for binary content.
-          enum:
-          - utf8
-          - base64
-          default: utf8
-      additionalProperties: false
     PressKeyRequest:
       type: object
       required:
@@ -550,121 +532,6 @@ components:
           description: Optional modifier keys to hold during the key press sequence.
           items:
             type: string
-      additionalProperties: false
-    BrowserUpdateRequest:
-      type: object
-      description: Request body for updating a browser session.
-      properties:
-        proxy_id:
-          type: string
-          nullable: true
-          description: ID of the proxy to use. Omit to leave unchanged, set to empty string to remove proxy.
-        disable_default_proxy:
-          type: boolean
-          description: If true, stealth browsers connect directly instead of using the default stealth proxy.
-        profile:
-          $ref: '#/components/schemas/BrowserProfile'
-          description: Profile to load into the browser session. Only allowed if the session does not already have a profile loaded.
-        viewport:
-          $ref: '#/components/schemas/BrowserViewportUpdate'
-          description: Viewport configuration to apply to the browser session.
-        telemetry:
-          $ref: '#/components/schemas/BrowserTelemetryConfig'
-          nullable: true
-          description: 'Telemetry configuration. Omit, set to null, or set to an empty object ({}) to leave the existing configuration unchanged (no-op). To enable capture for all categories using VM defaults, set browser to an empty object ({"browser": {}}). To stop capture, set every category''s enabled to false.
-
-            '
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Application-specific error code (machine-readable)
-          example: bad_request
-        message:
-          type: string
-          description: Human-readable error description for debugging
-          example: 'Missing required field: app_name'
-        details:
-          type: array
-          description: Additional error details (for multiple errors)
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-        inner_error:
-          $ref: '#/components/schemas/ErrorDetail'
-    BatchComputerActionRequest:
-      type: object
-      description: A batch of computer actions to execute sequentially.
-      required:
-      - actions
-      properties:
-        actions:
-          type: array
-          description: Ordered list of actions to execute. Execution stops on the first error.
-          minItems: 1
-          maxItems: 100
-          items:
-            $ref: '#/components/schemas/ComputerAction'
-      additionalProperties: false
-    SetCursorRequest:
-      type: object
-      required:
-      - hidden
-      properties:
-        hidden:
-          type: boolean
-          description: Whether the cursor should be hidden or visible
-      additionalProperties: false
-    MoveMouseRequest:
-      type: object
-      required:
-      - x
-      - y
-      properties:
-        x:
-          type: integer
-          description: X coordinate to move the cursor to
-        y:
-          type: integer
-          description: Y coordinate to move the cursor to
-        hold_keys:
-          type: array
-          description: Modifier keys to hold during the move
-          items:
-            type: string
-        smooth:
-          type: boolean
-          description: Use human-like Bezier curve path instead of instant mouse movement.
-          default: true
-        duration_ms:
-          type: integer
-          description: Target total duration in milliseconds for the mouse movement when smooth=true. Omit for automatic timing based on distance.
-          minimum: 50
-          maximum: 5000
-      additionalProperties: false
-    BrowserTelemetryConfig:
-      type: object
-      description: Telemetry configuration for a browser session.
-      properties:
-        browser:
-          $ref: '#/components/schemas/BrowserTelemetryCategoriesConfig'
-          description: Per-category enable/disable flags. If omitted, all categories are captured.
-    TypeTextRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: Text to type on the browser instance
-        delay:
-          type: integer
-          description: Delay in milliseconds between keystrokes
-          minimum: 0
-          default: 0
       additionalProperties: false
     BrowserRequest:
       type: object
@@ -763,62 +630,292 @@ components:
           description: Number of times to repeat the click
           default: 1
       additionalProperties: false
-    BrowserTelemetryCategoriesConfig:
+    BatchComputerActionRequest:
       type: object
-      description: Per-category telemetry capture settings.
+      description: A batch of computer actions to execute sequentially.
+      required:
+      - actions
       properties:
-        console:
-          $ref: '#/components/schemas/BrowserTelemetryCategoryConfig'
-          description: Console output (log, warn, error) and uncaught exceptions.
-        page:
-          $ref: '#/components/schemas/BrowserTelemetryCategoryConfig'
-          description: Page lifecycle events including navigation, DOMContentLoaded, load, layout shifts, and LCP.
-        interaction:
-          $ref: '#/components/schemas/BrowserTelemetryCategoryConfig'
-          description: User interaction events including clicks, keydowns, and scroll-settled events.
-        network:
-          $ref: '#/components/schemas/BrowserTelemetryCategoryConfig'
-          description: HTTP request and response metadata including URL, method, status code, and timing. Request post data is forwarded as-is from CDP. Text response bodies are truncated at 8 KB for structured types (JSON, XML, form data) and 4 KB for other text types. Binary responses (images, fonts, media) are excluded.
-    ComputerAction:
+        actions:
+          type: array
+          description: Ordered list of actions to execute. Execution stops on the first error.
+          minItems: 1
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/ComputerAction'
+      additionalProperties: false
+    Profile:
       type: object
-      description: 'A single computer action to execute as part of a batch. The `type` field selects which
+      description: Browser profile metadata.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the profile
+        name:
+          type: string
+          nullable: true
+          description: Optional, easier-to-reference name for the profile
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the profile was created
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the profile was last updated
+        last_used_at:
+          type: string
+          format: date-time
+          description: Timestamp when the profile was last used
+      required:
+      - id
+      - created_at
+    SleepAction:
+      type: object
+      description: Pause execution for a specified duration.
+      required:
+      - duration_ms
+      properties:
+        duration_ms:
+          type: integer
+          description: Duration to sleep in milliseconds.
+          minimum: 0
+          maximum: 30000
+      additionalProperties: false
+    SetCursorRequest:
+      type: object
+      required:
+      - hidden
+      properties:
+        hidden:
+          type: boolean
+          description: Whether the cursor should be hidden or visible
+      additionalProperties: false
+    TypeTextRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: Text to type on the browser instance
+        delay:
+          type: integer
+          description: Delay in milliseconds between keystrokes
+          minimum: 0
+          default: 0
+      additionalProperties: false
+    BrowserUpdateRequest:
+      type: object
+      description: Request body for updating a browser session.
+      properties:
+        proxy_id:
+          type: string
+          nullable: true
+          description: ID of the proxy to use. Omit to leave unchanged, set to empty string to remove proxy.
+        disable_default_proxy:
+          type: boolean
+          description: If true, stealth browsers connect directly instead of using the default stealth proxy.
+        profile:
+          $ref: '#/components/schemas/BrowserProfile'
+          description: Profile to load into the browser session. Only allowed if the session does not already have a profile loaded.
+        viewport:
+          $ref: '#/components/schemas/BrowserViewportUpdate'
+          description: Viewport configuration to apply to the browser session.
+        telemetry:
+          $ref: '#/components/schemas/BrowserTelemetryConfig'
+          nullable: true
+          description: 'Telemetry configuration. Omit, set to null, or set to an empty object ({}) to leave the existing configuration unchanged (no-op). To enable capture for all categories using VM defaults, set browser to an empty object ({"browser": {}}). To stop capture, set every category''s enabled to false.
 
-        action to perform, and the corresponding field contains the action parameters.
+            '
+    BrowserCurlRequest:
+      type: object
+      description: Request to make an HTTP request through the browser's network stack.
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          description: Target URL (must be http or https).
+        method:
+          type: string
+          description: HTTP method.
+          enum:
+          - GET
+          - HEAD
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - OPTIONS
+          default: GET
+        headers:
+          type: object
+          description: Custom headers merged with browser defaults.
+          additionalProperties:
+            type: string
+        body:
+          type: string
+          description: Request body (for POST/PUT/PATCH).
+        timeout_ms:
+          type: integer
+          description: Request timeout in milliseconds.
+          minimum: 1000
+          maximum: 60000
+          default: 30000
+        response_encoding:
+          type: string
+          description: Encoding for the response body. Use base64 for binary content.
+          enum:
+          - utf8
+          - base64
+          default: utf8
+      additionalProperties: false
+    BrowserUsage:
+      type: object
+      description: Session usage metrics.
+      properties:
+        uptime_ms:
+          type: integer
+          description: Time in milliseconds the session was actively running.
+      required:
+      - uptime_ms
+    BrowserCurlResult:
+      type: object
+      description: Structured response from the browser curl request.
+      required:
+      - status
+      - headers
+      - body
+      - duration_ms
+      properties:
+        status:
+          type: integer
+          description: HTTP status code from target.
+        headers:
+          type: object
+          description: Response headers (multi-value).
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        body:
+          type: string
+          description: Response body (UTF-8 string or base64 depending on request).
+        duration_ms:
+          type: integer
+          description: Total request duration in milliseconds.
+      additionalProperties: false
+    BrowserViewport:
+      type: object
+      description: 'Initial browser window size in pixels with optional refresh rate.
 
-        Exactly one action field matching the type must be provided.
+        If omitted, image defaults apply (1920x1080@25).
+
+        For GPU images, the default is 1920x1080@60.
+
+        Arbitrary viewport dimensions and refresh rates are accepted.
+
+        Known-good presets include:
+
+        2560x1440@10, 1920x1080@25, 1920x1200@25, 1440x900@25, 1280x800@60, 1024x768@60, 1200x800@60.
+
+        For GPU images, recommended presets use one of these resolutions with refresh rates 60, 30, 25, or 10:
+
+        800x600, 960x720, 1024x576, 1024x768, 1152x648, 1200x800, 1280x720, 1368x768, 1440x900, 1600x900, 1920x1080, 1920x1200, 390x844, 360x250, 768x1024, 800x1600.
+
+        Viewports outside this list may exhibit unstable live view or recording behavior.
+
+        If refresh_rate is not provided, it will be automatically determined based on the resolution
+
+        (higher resolutions use lower refresh rates to keep bandwidth reasonable).
 
         '
-      required:
-      - type
       properties:
-        type:
+        width:
+          type: integer
+          description: Browser window width in pixels.
+          minimum: 320
+          maximum: 7680
+          example: 1280
+        height:
+          type: integer
+          description: Browser window height in pixels.
+          minimum: 240
+          maximum: 4320
+          example: 800
+        refresh_rate:
+          type: integer
+          description: Display refresh rate in Hz. If omitted, automatically determined from width and height.
+          example: 60
+      required:
+      - width
+      - height
+    BrowserViewportUpdate:
+      description: Viewport configuration for updating a browser session. Extends BrowserViewport with update-only options.
+      allOf:
+      - $ref: '#/components/schemas/BrowserViewport'
+      - type: object
+        properties:
+          force:
+            type: boolean
+            default: false
+            description: 'If true, allow the viewport change even when a live view or recording/replay is active.
+
+              Active recordings will be gracefully stopped and restarted at the new resolution as
+
+              separate segments. If false (default), the resize is refused when a live view or recording is active.
+
+              '
+    ErrorDetail:
+      type: object
+      properties:
+        code:
           type: string
-          description: The type of action to perform.
-          enum:
-          - click_mouse
-          - move_mouse
-          - type_text
-          - press_key
-          - scroll
-          - drag_mouse
-          - set_cursor
-          - sleep
-        click_mouse:
-          $ref: '#/components/schemas/ClickMouseRequest'
-        move_mouse:
-          $ref: '#/components/schemas/MoveMouseRequest'
-        type_text:
-          $ref: '#/components/schemas/TypeTextRequest'
-        press_key:
-          $ref: '#/components/schemas/PressKeyRequest'
-        scroll:
-          $ref: '#/components/schemas/ScrollRequest'
-        drag_mouse:
-          $ref: '#/components/schemas/DragMouseRequest'
-        set_cursor:
-          $ref: '#/components/schemas/SetCursorRequest'
-        sleep:
-          $ref: '#/components/schemas/SleepAction'
+          description: Lower-level error code providing more specific detail
+          example: invalid_input
+        message:
+          type: string
+          description: Further detail about the error
+          example: Provided version string is not semver compliant
+    BrowserProfile:
+      type: object
+      description: 'Profile selection for the browser session. Provide either id or name. If specified, the
+
+        matching profile will be loaded into the browser session. Profiles must be created beforehand.
+
+        '
+      properties:
+        id:
+          type: string
+          description: Profile ID to load for this browser session
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[a-zA-Z0-9._-]{1,255}$
+          description: Profile name to load for this browser session (instead of id). Must be 1-255 characters, using letters, numbers, dots, underscores, or hyphens.
+        save_changes:
+          type: boolean
+          description: If true, save changes made during the session back to the profile when the session ends.
+          default: false
+      oneOf:
+      - required:
+        - id
+      - required:
+        - name
+    MousePositionResponse:
+      type: object
+      required:
+      - x
+      - y
+      properties:
+        x:
+          type: integer
+          description: X coordinate of the cursor
+        y:
+          type: integer
+          description: Y coordinate of the cursor
       additionalProperties: false
     DragMouseRequest:
       type: object
@@ -872,7 +969,7 @@ components:
           minimum: 50
           maximum: 10000
       additionalProperties: false
-    ScrollRequest:
+    MoveMouseRequest:
       type: object
       required:
       - x
@@ -880,148 +977,32 @@ components:
       properties:
         x:
           type: integer
-          description: X coordinate at which to perform the scroll
+          description: X coordinate to move the cursor to
         y:
           type: integer
-          description: Y coordinate at which to perform the scroll
-        delta_x:
-          type: integer
-          description: Horizontal scroll amount in xdotool "wheel units." Positive scrolls right, negative scrolls left.
-          default: 0
-        delta_y:
-          type: integer
-          description: Vertical scroll amount in xdotool "wheel units." Positive scrolls down, negative scrolls up.
-          default: 0
+          description: Y coordinate to move the cursor to
         hold_keys:
           type: array
-          description: Modifier keys to hold during the scroll
+          description: Modifier keys to hold during the move
           items:
             type: string
-      additionalProperties: false
-    MousePositionResponse:
-      type: object
-      required:
-      - x
-      - y
-      properties:
-        x:
-          type: integer
-          description: X coordinate of the cursor
-        y:
-          type: integer
-          description: Y coordinate of the cursor
-      additionalProperties: false
-    BrowserCurlResult:
-      type: object
-      description: Structured response from the browser curl request.
-      required:
-      - status
-      - headers
-      - body
-      - duration_ms
-      properties:
-        status:
-          type: integer
-          description: HTTP status code from target.
-        headers:
-          type: object
-          description: Response headers (multi-value).
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        body:
-          type: string
-          description: Response body (UTF-8 string or base64 depending on request).
-        duration_ms:
-          type: integer
-          description: Total request duration in milliseconds.
-      additionalProperties: false
-    SleepAction:
-      type: object
-      description: Pause execution for a specified duration.
-      required:
-      - duration_ms
-      properties:
-        duration_ms:
-          type: integer
-          description: Duration to sleep in milliseconds.
-          minimum: 0
-          maximum: 30000
-      additionalProperties: false
-    BrowserProfile:
-      type: object
-      description: 'Profile selection for the browser session. Provide either id or name. If specified, the
-
-        matching profile will be loaded into the browser session. Profiles must be created beforehand.
-
-        '
-      properties:
-        id:
-          type: string
-          description: Profile ID to load for this browser session
-        name:
-          type: string
-          minLength: 1
-          maxLength: 255
-          pattern: ^[a-zA-Z0-9._-]{1,255}$
-          description: Profile name to load for this browser session (instead of id). Must be 1-255 characters, using letters, numbers, dots, underscores, or hyphens.
-        save_changes:
+        smooth:
           type: boolean
-          description: If true, save changes made during the session back to the profile when the session ends.
-          default: false
-      oneOf:
-      - required:
-        - id
-      - required:
-        - name
-    BrowserUsage:
-      type: object
-      description: Session usage metrics.
-      properties:
-        uptime_ms:
+          description: Use human-like Bezier curve path instead of instant mouse movement.
+          default: true
+        duration_ms:
           type: integer
-          description: Time in milliseconds the session was actively running.
-      required:
-      - uptime_ms
-    Profile:
+          description: Target total duration in milliseconds for the mouse movement when smooth=true. Omit for automatic timing based on distance.
+          minimum: 50
+          maximum: 5000
+      additionalProperties: false
+    BrowserTelemetryCategoryConfig:
       type: object
-      description: Browser profile metadata.
+      description: Per-category telemetry configuration.
       properties:
-        id:
-          type: string
-          description: Unique identifier for the profile
-        name:
-          type: string
-          nullable: true
-          description: Optional, easier-to-reference name for the profile
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when the profile was created
-        updated_at:
-          type: string
-          format: date-time
-          description: Timestamp when the profile was last updated
-        last_used_at:
-          type: string
-          format: date-time
-          description: Timestamp when the profile was last used
-      required:
-      - id
-      - created_at
-    BrowserPoolRef:
-      type: object
-      description: Browser pool this session was acquired from, if any.
-      properties:
-        id:
-          type: string
-          description: Browser pool ID
-        name:
-          type: string
-          description: Browser pool name, if set
-      required:
-      - id
+        enabled:
+          type: boolean
+          description: Whether this category is captured. Defaults to true if omitted.
     BrowserCurlTransportError:
       type: object
       description: Transport-level error when the request could not complete.
@@ -1121,67 +1102,73 @@ components:
       - stealth
       - headless
       - timeout_seconds
-    BrowserViewportUpdate:
-      description: Viewport configuration for updating a browser session. Extends BrowserViewport with update-only options.
-      allOf:
-      - $ref: '#/components/schemas/BrowserViewport'
-      - type: object
-        properties:
-          force:
-            type: boolean
-            default: false
-            description: 'If true, allow the viewport change even when a live view or recording/replay is active.
-
-              Active recordings will be gracefully stopped and restarted at the new resolution as
-
-              separate segments. If false (default), the resize is refused when a live view or recording is active.
-
-              '
-    BrowserViewport:
+    ComputerAction:
       type: object
-      description: 'Initial browser window size in pixels with optional refresh rate.
+      description: 'A single computer action to execute as part of a batch. The `type` field selects which
 
-        If omitted, image defaults apply (1920x1080@25).
+        action to perform, and the corresponding field contains the action parameters.
 
-        For GPU images, the default is 1920x1080@60.
-
-        Arbitrary viewport dimensions and refresh rates are accepted.
-
-        Known-good presets include:
-
-        2560x1440@10, 1920x1080@25, 1920x1200@25, 1440x900@25, 1280x800@60, 1024x768@60, 1200x800@60.
-
-        For GPU images, recommended presets use one of these resolutions with refresh rates 60, 30, 25, or 10:
-
-        800x600, 960x720, 1024x576, 1024x768, 1152x648, 1200x800, 1280x720, 1368x768, 1440x900, 1600x900, 1920x1080, 1920x1200, 390x844, 360x250, 768x1024, 800x1600.
-
-        Viewports outside this list may exhibit unstable live view or recording behavior.
-
-        If refresh_rate is not provided, it will be automatically determined based on the resolution
-
-        (higher resolutions use lower refresh rates to keep bandwidth reasonable).
+        Exactly one action field matching the type must be provided.
 
         '
-      properties:
-        width:
-          type: integer
-          description: Browser window width in pixels.
-          minimum: 320
-          maximum: 7680
-          example: 1280
-        height:
-          type: integer
-          description: Browser window height in pixels.
-          minimum: 240
-          maximum: 4320
-          example: 800
-        refresh_rate:
-          type: integer
-          description: Display refresh rate in Hz. If omitted, automatically determined from width and height.
-          example: 60
       required:
-      - width
-      - height
+      - type
+      properties:
+        type:
+          type: string
+          description: The type of action to perform.
+          enum:
+          - click_mouse
+          - move_mouse
+          - type_text
+          - press_key
+          - scroll
+          - drag_mouse
+          - set_cursor
+          - sleep
+        click_mouse:
+          $ref: '#/components/schemas/ClickMouseRequest'
+        move_mouse:
+          $ref: '#/components/schemas/MoveMouseRequest'
+        type_text:
+          $ref: '#/components/schemas/TypeTextRequest'
+        press_key:
+          $ref: '#/components/schemas/PressKeyRequest'
+        scroll:
+          $ref: '#/components/schemas/ScrollRequest'
+        drag_mouse:
+          $ref: '#/components/schemas/DragMouseRequest'
+        set_cursor:
+          $ref: '#/components/schemas/SetCursorRequest'
+        sleep:
+          $ref: '#/components/schemas/SleepAction'
+      additionalProperties: false
+    ScrollRequest:
+      type: object
+      required:
+      - x
+      - y
+      properties:
+        x:
+          type: integer
+          description: X coordinate at which to perform the scroll
+        y:
+          type: integer
+          description: Y coordinate at which to perform the scroll
+        delta_x:
+          type: integer
+          description: Horizontal scroll amount in xdotool "wheel units." Positive scrolls right, negative scrolls left.
+          default: 0
+        delta_y:
+          type: integer
+          description: Vertical scroll amount in xdotool "wheel units." Positive scrolls down, negative scrolls up.
+          default: 0
+        hold_keys:
+          type: array
+          description: Modifier keys to hold during the scroll
+          items:
+            type: string
+      additionalProperties: false
     BrowserExtension:
       type: object
       description: 'Extension selection for the browser session. Provide either id or name of an extension uploaded to Kernel.
@@ -1202,54 +1189,62 @@ components:
         - id
       - required:
         - name
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    CapacityExhausted:
-      description: Capacity exhausted, unable to fulfill request at this time
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Forbidden – insufficient permissions or plan
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized – missing or invalid authorization token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Too Many Requests – rate limit exceeded
-      headers:
-        Retry-After:
-          description: Seconds to wait before retrying
-          schema:
-            type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad Request – invalid input
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    BrowserTelemetryConfig:
+      type: object
+      description: Telemetry configuration for a browser session.
+      properties:
+        browser:
+          $ref: '#/components/schemas/BrowserTelemetryCategoriesConfig'
+          description: Per-category enable/disable flags. If omitted, all categories are captured.
+    BrowserTelemetryCategoriesConfig:
+      type: object
+      description: Per-category telemetry capture settings.
+      properties:
+        console:
+          $ref: '#/components/schemas/BrowserTelemetryCategoryConfig'
+          description: Console output (log, warn, error) and uncaught exceptions.
+        page:
+          $ref: '#/components/schemas/BrowserTelemetryCategoryConfig'
+          description: Page lifecycle events including navigation, DOMContentLoaded, load, layout shifts, and LCP.
+        interaction:
+          $ref: '#/components/schemas/BrowserTelemetryCategoryConfig'
+          description: User interaction events including clicks, keydowns, and scroll-settled events.
+        network:
+          $ref: '#/components/schemas/BrowserTelemetryCategoryConfig'
+          description: HTTP request and response metadata including URL, method, status code, and timing. Request post data is forwarded as-is from CDP. Text response bodies are truncated at 8 KB for structured types (JSON, XML, form data) and 4 KB for other text types. Binary responses (images, fonts, media) are excluded.
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Application-specific error code (machine-readable)
+          example: bad_request
+        message:
+          type: string
+          description: Human-readable error description for debugging
+          example: 'Missing required field: app_name'
+        details:
+          type: array
+          description: Additional error details (for multiple errors)
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+        inner_error:
+          $ref: '#/components/schemas/ErrorDetail'
+    BrowserPoolRef:
+      type: object
+      description: Browser pool this session was acquired from, if any.
+      properties:
+        id:
+          type: string
+          description: Browser pool ID
+        name:
+          type: string
+          description: Browser pool name, if set
+      required:
+      - id
   securitySchemes:
     bearerAuth:
       type: http

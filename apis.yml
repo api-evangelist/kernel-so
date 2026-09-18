@@ -19,9 +19,9 @@ tags:
 - Agents
 - Artificial Intelligence
 - Browser Automation
-- Browsers
+- Browser
 - Computer Use
-- Headless Browsers
+- Headless Browser
 - MCP
 - Playwright
 - Web Agents
@@ -269,6 +269,8 @@ apis:
   humanURL: https://www.kernel.sh/docs/api-reference/
   baseURL: https://api.onkernel.com
   tags:
+  - Browser
+  tags_raw:
   - Browsers
   properties:
   - type: OpenAPI

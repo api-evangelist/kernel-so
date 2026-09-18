@@ -1,27 +1,7 @@
 {
   "provider": "kernel-so",
   "sources": [
-    "kernel-so-api-keys-api-openapi.yml",
-    "kernel-so-apps-api-openapi.yml",
-    "kernel-so-auth-connections-api-openapi.yml",
-    "kernel-so-browser-computer-controls-api-openapi.yml",
-    "kernel-so-browser-filesystem-api-openapi.yml",
-    "kernel-so-browser-logs-api-openapi.yml",
-    "kernel-so-browser-playwright-api-openapi.yml",
-    "kernel-so-browser-pools-api-openapi.yml",
-    "kernel-so-browser-processes-api-openapi.yml",
-    "kernel-so-browser-replays-api-openapi.yml",
-    "kernel-so-browser-telemetry-api-openapi.yml",
-    "kernel-so-browsers-api-openapi.yml",
-    "kernel-so-credential-providers-api-openapi.yml",
-    "kernel-so-credentials-api-openapi.yml",
-    "kernel-so-deployments-api-openapi.yml",
-    "kernel-so-extensions-api-openapi.yml",
-    "kernel-so-invocations-api-openapi.yml",
-    "kernel-so-managed-auth-api-openapi.yml",
-    "kernel-so-profiles-api-openapi.yml",
-    "kernel-so-projects-api-openapi.yml",
-    "kernel-so-proxies-api-openapi.yml"
+    "_original/kernel-openapi.yml"
   ],
   "outputs": [
     "kernel-so-api-keys-api-openapi.yml",
@@ -49,6 +29,33 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "kernel-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "kernel-openapi.yml: declared missing tag: Auth Connections",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "kernel-so-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-auth-connections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-browser-computer-controls-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-browser-filesystem-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-browser-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-browser-playwright-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-browser-pools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-browser-processes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-browser-replays-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-browser-telemetry-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-browsers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-credential-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-credentials-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-deployments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-extensions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-invocations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-managed-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-profiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kernel-so-proxies-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kernel API Keys Browser Computer Controls API
+  title: Kernel Browser Computer Controls API
   description: Developer tools and cloud infrastructure for AI agents to use web browsers
   version: 0.1.0
 servers:
@@ -391,12 +391,6 @@ paths:
         source: "package main\n\nimport (\n\t\"context\"\n\n\t\"github.com/kernel/kernel-go-sdk\"\n\t\"github.com/kernel/kernel-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := kernel.NewClient(\n\t\toption.WithAPIKey(\"My API Key\"),\n\t)\n\terr := client.Browsers.Computer.WriteClipboard(\n\t\tcontext.TODO(),\n\t\t\"id\",\n\t\tkernel.BrowserComputerWriteClipboardParams{\n\t\t\tText: \"text\",\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n"
 components:
   responses:
-    InternalError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
       content:
@@ -409,32 +403,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    ErrorDetail:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Lower-level error code providing more specific detail
-          example: invalid_input
-        message:
-          type: string
-          description: Further detail about the error
-          example: Provided version string is not semver compliant
     ScreenshotRequest:
       type: object
       properties:
         region:
           $ref: '#/components/schemas/ScreenshotRegion'
-      additionalProperties: false
-    ClipboardContent:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: Current clipboard text content
       additionalProperties: false
     ScrollRequest:
       type: object
@@ -462,6 +442,17 @@ components:
           items:
             type: string
       additionalProperties: false
+    ErrorDetail:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Lower-level error code providing more specific detail
+          example: invalid_input
+        message:
+          type: string
+          description: Further detail about the error
+          example: Provided version string is not semver compliant
     PressKeyRequest:
       type: object
       required:
@@ -488,6 +479,158 @@ components:
           description: Optional modifier keys to hold during the key press sequence.
           items:
             type: string
+      additionalProperties: false
+    WriteClipboardRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: Text to write to the system clipboard
+      additionalProperties: false
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Application-specific error code (machine-readable)
+          example: bad_request
+        message:
+          type: string
+          description: Human-readable error description for debugging
+          example: 'Missing required field: app_name'
+        details:
+          type: array
+          description: Additional error details (for multiple errors)
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+        inner_error:
+          $ref: '#/components/schemas/ErrorDetail'
+    DragMouseRequest:
+      type: object
+      required:
+      - path
+      properties:
+        path:
+          type: array
+          description: Ordered list of [x, y] coordinate pairs to move through while dragging. Must contain at least 2 points.
+          minItems: 2
+          items:
+            type: array
+            minItems: 2
+            maxItems: 2
+            items:
+              type: integer
+        button:
+          type: string
+          description: Mouse button to drag with
+          enum:
+          - left
+          - middle
+          - right
+        delay:
+          type: integer
+          description: Delay in milliseconds between button down and starting to move along the path.
+          minimum: 0
+          default: 0
+        steps_per_segment:
+          type: integer
+          description: Number of relative move steps per segment in the path. Minimum 1.
+          minimum: 1
+          default: 10
+        step_delay_ms:
+          type: integer
+          description: Delay in milliseconds between relative steps while dragging (not the initial delay).
+          minimum: 0
+          default: 50
+        hold_keys:
+          type: array
+          description: Modifier keys to hold during the drag
+          items:
+            type: string
+        smooth:
+          type: boolean
+          description: Use human-like Bezier curves between path waypoints instead of linear interpolation. When true, steps_per_segment and step_delay_ms are ignored.
+          default: true
+        duration_ms:
+          type: integer
+          description: Target total duration in milliseconds for the entire drag movement when smooth=true. Omit for automatic timing based on total path length.
+          minimum: 50
+          maximum: 10000
+      additionalProperties: false
+    SetCursorRequest:
+      type: object
+      required:
+      - hidden
+      properties:
+        hidden:
+          type: boolean
+          description: Whether the cursor should be hidden or visible
+      additionalProperties: false
+    MoveMouseRequest:
+      type: object
+      required:
+      - x
+      - y
+      properties:
+        x:
+          type: integer
+          description: X coordinate to move the cursor to
+        y:
+          type: integer
+          description: Y coordinate to move the cursor to
+        hold_keys:
+          type: array
+          description: Modifier keys to hold during the move
+          items:
+            type: string
+        smooth:
+          type: boolean
+          description: Use human-like Bezier curve path instead of instant mouse movement.
+          default: true
+        duration_ms:
+          type: integer
+          description: Target total duration in milliseconds for the mouse movement when smooth=true. Omit for automatic timing based on distance.
+          minimum: 50
+          maximum: 5000
+      additionalProperties: false
+    OkResponse:
+      type: object
+      description: Generic OK response.
+      required:
+      - ok
+      properties:
+        ok:
+          type: boolean
+          description: Indicates success.
+          default: true
+      additionalProperties: false
+    ClipboardContent:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: Current clipboard text content
+      additionalProperties: false
+    TypeTextRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: Text to type on the browser instance
+        delay:
+          type: integer
+          description: Delay in milliseconds between keystrokes
+          minimum: 0
+          default: 0
       additionalProperties: false
     ScreenshotRegion:
       type: object
@@ -547,149 +690,6 @@ components:
           type: integer
           description: Number of times to repeat the click
           default: 1
-      additionalProperties: false
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Application-specific error code (machine-readable)
-          example: bad_request
-        message:
-          type: string
-          description: Human-readable error description for debugging
-          example: 'Missing required field: app_name'
-        details:
-          type: array
-          description: Additional error details (for multiple errors)
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-        inner_error:
-          $ref: '#/components/schemas/ErrorDetail'
-    SetCursorRequest:
-      type: object
-      required:
-      - hidden
-      properties:
-        hidden:
-          type: boolean
-          description: Whether the cursor should be hidden or visible
-      additionalProperties: false
-    MoveMouseRequest:
-      type: object
-      required:
-      - x
-      - y
-      properties:
-        x:
-          type: integer
-          description: X coordinate to move the cursor to
-        y:
-          type: integer
-          description: Y coordinate to move the cursor to
-        hold_keys:
-          type: array
-          description: Modifier keys to hold during the move
-          items:
-            type: string
-        smooth:
-          type: boolean
-          description: Use human-like Bezier curve path instead of instant mouse movement.
-          default: true
-        duration_ms:
-          type: integer
-          description: Target total duration in milliseconds for the mouse movement when smooth=true. Omit for automatic timing based on distance.
-          minimum: 50
-          maximum: 5000
-      additionalProperties: false
-    WriteClipboardRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: Text to write to the system clipboard
-      additionalProperties: false
-    TypeTextRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: Text to type on the browser instance
-        delay:
-          type: integer
-          description: Delay in milliseconds between keystrokes
-          minimum: 0
-          default: 0
-      additionalProperties: false
-    OkResponse:
-      type: object
-      description: Generic OK response.
-      required:
-      - ok
-      properties:
-        ok:
-          type: boolean
-          description: Indicates success.
-          default: true
-      additionalProperties: false
-    DragMouseRequest:
-      type: object
-      required:
-      - path
-      properties:
-        path:
-          type: array
-          description: Ordered list of [x, y] coordinate pairs to move through while dragging. Must contain at least 2 points.
-          minItems: 2
-          items:
-            type: array
-            minItems: 2
-            maxItems: 2
-            items:
-              type: integer
-        button:
-          type: string
-          description: Mouse button to drag with
-          enum:
-          - left
-          - middle
-          - right
-        delay:
-          type: integer
-          description: Delay in milliseconds between button down and starting to move along the path.
-          minimum: 0
-          default: 0
-        steps_per_segment:
-          type: integer
-          description: Number of relative move steps per segment in the path. Minimum 1.
-          minimum: 1
-          default: 10
-        step_delay_ms:
-          type: integer
-          description: Delay in milliseconds between relative steps while dragging (not the initial delay).
-          minimum: 0
-          default: 50
-        hold_keys:
-          type: array
-          description: Modifier keys to hold during the drag
-          items:
-            type: string
-        smooth:
-          type: boolean
-          description: Use human-like Bezier curves between path waypoints instead of linear interpolation. When true, steps_per_segment and step_delay_ms are ignored.
-          default: true
-        duration_ms:
-          type: integer
-          description: Target total duration in milliseconds for the entire drag movement when smooth=true. Omit for automatic timing based on total path length.
-          minimum: 50
-          maximum: 10000
       additionalProperties: false
   securitySchemes:
     bearerAuth:

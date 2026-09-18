@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kernel API Keys Profiles API
+  title: Kernel Profiles API
   description: Developer tools and cloud infrastructure for AI agents to use web browsers
   version: 0.1.0
 servers:
@@ -243,18 +243,6 @@ paths:
         source: "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\n\t\"github.com/kernel/kernel-go-sdk\"\n\t\"github.com/kernel/kernel-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := kernel.NewClient(\n\t\toption.WithAPIKey(\"My API Key\"),\n\t)\n\tresponse, err := client.Profiles.Download(context.TODO(), \"id_or_name\")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf(\"%+v\\n\", response)\n}\n"
 components:
   responses:
-    InternalError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Forbidden – insufficient permissions or plan
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
       content:
@@ -267,8 +255,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden – insufficient permissions or plan
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Unauthorized – missing or invalid authorization token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal Server Error
       content:
         application/json:
           schema:
@@ -291,6 +291,14 @@ components:
           type: string
           description: Further detail about the error
           example: Provided version string is not semver compliant
+    ProfileRequest:
+      type: object
+      description: Request body for creating a profile.
+      properties:
+        name:
+          type: string
+          description: Optional name of the profile. Must be unique within the project.
+      required: []
     Profile:
       type: object
       description: Browser profile metadata.
@@ -317,14 +325,6 @@ components:
       required:
       - id
       - created_at
-    ProfileRequest:
-      type: object
-      description: Request body for creating a profile.
-      properties:
-        name:
-          type: string
-          description: Optional name of the profile. Must be unique within the project.
-      required: []
     Error:
       type: object
       required:
